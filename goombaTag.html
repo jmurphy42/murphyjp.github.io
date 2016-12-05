@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Goomba Tag</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <script src="goombaTag.js"></script>
+    <style type="text/css">
+        body{
+            background-color: gainsboro;
+            color: #252735;
+            font-family: 'Montserrat', sans-serif;
+
+        }
+        h1{
+            background-color: #252735;
+            color: gainsboro;
+            padding: 20px;
+        }
+        h2{
+            background-color: #252735;
+            color: gainsboro;
+            padding: 20px;
+            position: absolute;
+            top: 650px;
+            left: 220px;
+        }
+        #msg{
+            display: none;
+            top: 350px;
+            left: 10px;
+        }
+        #gameFrame{
+            border: 3px solid #252735;
+            width: 500px;
+            height: 500px;
+            position: absolute;
+            left: 50px;
+            top: 150px;
+        }
+        #player{
+            background-color: #252735;
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            left: 240px;
+            top: 240px;
+        }
+        .goomba{
+            background-color: #904519;
+            width: 20px;
+            height: 20px;
+            position: absolute;
+        }
+        #goomba0{
+            left: 120px;
+            top: 100px;
+        }
+        #goomba1{
+            left: 240px;
+            top: 60px;
+        }
+        #goomba2{
+            left: 360px;
+            top: 100px;
+        }
+        #goomba3{
+            left: 60px;
+            top: 180px;
+        }
+        #goomba4{
+            left: 420px;
+            top: 180px;
+        }
+        #goomba5{
+            left: 420px;
+            top: 300px;
+        }
+        #goomba6{
+            left: 60px;
+            top: 300px;
+        }
+        #goomba7{
+            left: 360px;
+            top: 380px;
+        }
+        #goomba8{
+            left: 240px;
+            top: 420px;
+        }
+        #goomba9{
+            left: 120px;
+            top: 380px;
+        }
+    </style>
+</head>
+<body>
+<h1>Goomba Tag</h1>
+<div id="gameFrame">
+    <div id="player"></div>
+    <div class="goomba" id="goomba1"></div>
+    <div class="goomba" id="goomba2"></div>
+    <div class="goomba" id="goomba3"></div>
+    <div class="goomba" id="goomba4"></div>
+    <div class="goomba" id="goomba5"></div>
+    <div class="goomba" id="goomba6"></div>
+    <div class="goomba" id="goomba7"></div>
+    <div class="goomba" id="goomba8"></div>
+    <div class="goomba" id="goomba9"></div>
+    <div class="goomba" id="goomba0"></div>
+</div>
+<h2>Moves: <span id="moves">0</span></h2>
+<h2 id="msg">Game over. Well done. Refresh to play again.</h2>
+</body>
+</html>
