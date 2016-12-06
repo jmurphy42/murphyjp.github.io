@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cloud</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <script src="jitter.js"></script>
+    <link type="text/css" rel="stylesheet" href="jitter.css" />
+</head>
+<body onload="init()">
+<div id="home"><a href="../index.html">🏠</a></div>
+<h1>Jitter Bug</h1>
+<div id="gameFrame">
+    <div id="jitter" onmouseout="mouseOffJitter()"></div>
+</div>
+<div id="restartGame">
+    <p class="buttonize" onclick="location.reload()">
+        Restart Game
+    </p>
+</div>
+<div id="data">
+    <h2>Time: <span id="moves">0</span></h2>
+    <h3>High Scores</h3>
+    <div class="scores" onload="updateHighScores()">
+        <ol>
+            <li><span id="1s">0</span> ms · <span id="1i">Jitter</span></li>
+            <li><span id="2s">0</span> ms · <span id="2i">Jitter</span></li>
+            <li><span id="3s">0</span> ms · <span id="3i">Jitter</span></li>
+            <li><span id="4s">0</span> ms · <span id="4i">Jitter</span></li>
+            <li><span id="5s">0</span> ms · <span id="5i">Jitter</span></li>
+        </ol>
+        <p class="buttonize" onclick="resetScores()">
+            Reset Scores
+        </p>
+    </div>
+    <h3>Instructions</h3>
+    <ul>
+        <li>Click the jitter bug.</li>
+        <li>Try to keep your mouse over the jitter bug as it moves.</li>
+        <li>When the jitter bug gets away, the game is over.</li>
+        <li>Try to stay on the jitter bug as long as possible!</li>
+    </ul>
+</div>
+<h2 id="msg">
+    Game over. Well done.<br />
+    Refresh or click the button below to play again.
+</h2>
+</body>
+</html>
