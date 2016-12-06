@@ -10,10 +10,11 @@ var status = 1;
 var goombaStatus = [1,1,1,1,1,1,1,1,1,1];
 
 function checkKey(e){
+    e = e || window.event;
+    var direction = e.keyCode;
+
     if (status > 0) {
 
-        e = e || window.event;
-        var direction = e.keyCode;
 
         switch (direction) {
             case 87:
@@ -26,6 +27,10 @@ function checkKey(e){
             case 39: //W-A-S-D or up-down-left-right
                 movePlayer(direction);
                 break;
+        }
+    }else{
+        if (direction==13 || direction==32){ //space or enter
+            location.reload()
         }
     }
 }
