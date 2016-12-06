@@ -5,99 +5,12 @@
     <title>Goomba Tag</title>
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <script src="goombaTag.js"></script>
-    <style type="text/css">
-        body{
-            background-color: gainsboro;
-            color: #252735;
-            font-family: 'Montserrat', sans-serif;
-
-        }
-        h1{
-            background-color: #252735;
-            color: gainsboro;
-            padding: 20px;
-        }
-        h2{
-            background-color: #252735;
-            color: gainsboro;
-            padding: 20px;
-            position: absolute;
-            top: 650px;
-            left: 220px;
-        }
-        #msg{
-            display: none;
-            top: 350px;
-            left: 10px;
-        }
-        #gameFrame{
-            border: 3px solid #252735;
-            width: 500px;
-            height: 500px;
-            position: absolute;
-            left: 50px;
-            top: 150px;
-        }
-        #player{
-            background-color: #252735;
-            width: 20px;
-            height: 20px;
-            position: absolute;
-            left: 240px;
-            top: 240px;
-        }
-        .goomba{
-            background-color: #904519;
-            width: 20px;
-            height: 20px;
-            position: absolute;
-        }
-        #goomba0{
-            left: 120px;
-            top: 100px;
-        }
-        #goomba1{
-            left: 240px;
-            top: 60px;
-        }
-        #goomba2{
-            left: 360px;
-            top: 100px;
-        }
-        #goomba3{
-            left: 60px;
-            top: 180px;
-        }
-        #goomba4{
-            left: 420px;
-            top: 180px;
-        }
-        #goomba5{
-            left: 420px;
-            top: 300px;
-        }
-        #goomba6{
-            left: 60px;
-            top: 300px;
-        }
-        #goomba7{
-            left: 360px;
-            top: 380px;
-        }
-        #goomba8{
-            left: 240px;
-            top: 420px;
-        }
-        #goomba9{
-            left: 120px;
-            top: 380px;
-        }
-    </style>
+    <link type="text/css" rel="stylesheet" href="goombaTag.css" />
 </head>
-<body>
+<body onload="loadHighScores()">
+<div id="home"><a href="index.html">🏠</a></div>
 <h1>Goomba Tag</h1>
 <div id="gameFrame">
-    <div id="player"></div>
     <div class="goomba" id="goomba1"></div>
     <div class="goomba" id="goomba2"></div>
     <div class="goomba" id="goomba3"></div>
@@ -108,8 +21,39 @@
     <div class="goomba" id="goomba8"></div>
     <div class="goomba" id="goomba9"></div>
     <div class="goomba" id="goomba0"></div>
+    <div id="player"></div>
 </div>
-<h2>Moves: <span id="moves">0</span></h2>
-<h2 id="msg">Game over. Well done. Refresh to play again.</h2>
+<div id="restartGame">
+    <p class="buttonize" onclick="location.reload()">
+        Restart Game
+    </p>
+</div>
+<div id="data">
+    <h2>Moves: <span id="moves">0</span></h2>
+    <h3>High Scores</h3>
+    <div class="scores">
+        <ol>
+            <li><span id="1s">0</span> <span id="1i">GMB</span></li>
+            <li><span id="2s">0</span> <span id="2i">GMB</span></li>
+            <li><span id="3s">0</span> <span id="3i">GMB</span></li>
+            <li><span id="4s">0</span> <span id="4i">GMB</span></li>
+            <li><span id="5s">0</span> <span id="5i">GMB</span></li>
+        </ol>
+        <p class="buttonize" onclick="resetScores()">
+            Reset Scores
+        </p>
+    </div>
+    <h3>Instructions</h3>
+    <ul>
+        <li>Move the blue goomba around the board by clicking the arrow (or WASD) keys.</li>
+        <li>Try to tag each of the ten brown goombas.</li>
+        <li>When all ten goombas are tagged, the game is over.</li>
+        <li>Try to tag 'em all in the fewest possible moves!</li>
+    </ul>
+</div>
+<h2 id="msg">
+    Game over. Well done.<br />
+    Refresh or click the button below to play again.
+</h2>
 </body>
 </html>

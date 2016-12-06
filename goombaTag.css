@@ -1,0 +1,130 @@
+body{
+    background-color: gainsboro;
+    color: #252735;
+    font-family: 'Montserrat', sans-serif;
+}
+h1{
+    background-color: #252735;
+    color: gainsboro;
+    padding: 20px;
+    height: 40px;
+    margin-left: 83px;
+}
+h2{
+    background-color: #252735;
+    color: gainsboro;
+    padding: 20px;
+}
+h3{
+    clear: right;
+    border-bottom: 1px solid #252735;
+}
+#home{
+    width: 40px;
+    height: 40px;
+    font-size: x-large;
+    font-weight: bolder;
+    text-align: center;
+    background-color: #252735;
+    color: gainsboro;
+    padding: 20px;
+    float: left;
+}
+a{
+    color: #904519;
+    font-weight: bolder;
+    text-decoration: none;
+}
+a:hover{
+    color: #9a2517;
+    text-decoration: underline;
+}
+#msg{
+    display: none;
+    position: absolute;
+    text-align: center;
+    top: 330px;
+    left: 10px;
+}
+#gameFrame{
+    border: 3px solid #252735;
+    width: 500px;
+    height: 500px;
+    position: absolute;
+    left: 50px;
+    top: 150px;
+}
+#data{
+    position: absolute;
+    left: 600px;
+    top: 150px;
+    margin: 10px;
+}
+#player{
+    background-color: #252735;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    left: 240px;
+    top: 240px;
+}
+.buttonize{
+    padding: 5px;
+    border: 1px solid #252735;
+    float: right;
+    width: 100px;
+    cursor: pointer;
+    text-align: center;
+    font-size: small;
+}
+#restartGame{
+    position: absolute;
+    left: 50px;
+    top: 660px;
+}
+.goomba{
+    background-color: #904519;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+}
+#goomba0{
+    left: 120px;
+    top: 100px;
+}
+#goomba1{
+    left: 240px;
+    top: 60px;
+}
+#goomba2{
+    left: 360px;
+    top: 100px;
+}
+#goomba3{
+    left: 60px;
+    top: 180px;
+}
+#goomba4{
+    left: 420px;
+    top: 180px;
+}
+#goomba5{
+    left: 420px;
+    top: 300px;
+}
+#goomba6{
+    left: 60px;
+    top: 300px;
+}
+#goomba7{
+    left: 360px;
+    top: 380px;
+}
+#goomba8{
+    left: 240px;
+    top: 420px;
+}
+#goomba9{
+    left: 120px;
+    top: 380px;
+}
