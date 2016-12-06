@@ -142,11 +142,11 @@ function loadHighScores() {
         s3 = 999;
         s4 = 999;
         s5 = 999;
-        i1 = "GMB";
-        i2 = "GMB";
-        i3 = "GMB";
-        i4 = "GMB";
-        i5 = "GMB";
+        i1 = "Goomba";
+        i2 = "Goomba";
+        i3 = "Goomba";
+        i4 = "Goomba";
+        i5 = "Goomba";
     }else{
         s1 = parseInt(localStorage.getItem("s1"));
         s2 = parseInt(localStorage.getItem("s2"));
@@ -187,11 +187,11 @@ function updateHighScores() {
     localStorage.setItem("s3",s3+"");
     localStorage.setItem("s4",s4+"");
     localStorage.setItem("s5",s5+"");
-    localStorage.setItem("i1",i1+"");
-    localStorage.setItem("i2",i2+"");
-    localStorage.setItem("i3",i3+"");
-    localStorage.setItem("i4",i4+"");
-    localStorage.setItem("i5",i5+"");
+    localStorage.setItem("i1",i1);
+    localStorage.setItem("i2",i2);
+    localStorage.setItem("i3",i3);
+    localStorage.setItem("i4",i4);
+    localStorage.setItem("i5",i5);
 }
 
 function checkHighScore(){
@@ -211,8 +211,11 @@ function checkHighScore(){
     if (nMovements < s5) {
         while (!initialsValid) {
             yourInitials = prompt("You earned a place on the Score Board!\n" +
-                "Enter your initials:", "YOU");
-            if (yourInitials != null && yourInitials.length <= 3 && yourInitials.length > 0) {
+                "Enter your name or initials:", "You");
+            if (yourInitials != null && yourInitials.length > 0) {
+                if (yourInitials>15){
+                    yourInitials = yourInitials.substring(0,15);
+                }
                 initialsValid = true;
             }
         }
@@ -258,23 +261,24 @@ function checkHighScore(){
     document.getElementById("3s").innerHTML = s3+"";
     document.getElementById("4s").innerHTML = s4+"";
     document.getElementById("5s").innerHTML = s5+"";
-    document.getElementById("1i").innerHTML = i1+"";
-    document.getElementById("2i").innerHTML = i2+"";
-    document.getElementById("3i").innerHTML = i3+"";
-    document.getElementById("4i").innerHTML = i4+"";
-    document.getElementById("5i").innerHTML = i5+"";
+    document.getElementById("1i").innerHTML = i1;
+    document.getElementById("2i").innerHTML = i2;
+    document.getElementById("3i").innerHTML = i3;
+    document.getElementById("4i").innerHTML = i4;
+    document.getElementById("5i").innerHTML = i5;
 }
+
 function resetScores(){
     s1 = 999;
     s2 = 999;
     s3 = 999;
     s4 = 999;
     s5 = 999;
-    i1 = "GMB";
-    i2 = "GMB";
-    i3 = "GMB";
-    i4 = "GMB";
-    i5 = "GMB";
+    i1 = "Goomba";
+    i2 = "Goomba";
+    i3 = "Goomba";
+    i4 = "Goomba";
+    i5 = "Goomba";
     document.getElementById("1s").innerHTML = s1+"";
     document.getElementById("2s").innerHTML = s2+"";
     document.getElementById("3s").innerHTML = s3+"";
@@ -290,9 +294,9 @@ function resetScores(){
     localStorage.setItem("s3",s3+"");
     localStorage.setItem("s4",s4+"");
     localStorage.setItem("s5",s5+"");
-    localStorage.setItem("i1",i1+"");
-    localStorage.setItem("i2",i2+"");
-    localStorage.setItem("i3",i3+"");
-    localStorage.setItem("i4",i4+"");
-    localStorage.setItem("i5",i5+"");
+    localStorage.setItem("i1",i1);
+    localStorage.setItem("i2",i2);
+    localStorage.setItem("i3",i3);
+    localStorage.setItem("i4",i4);
+    localStorage.setItem("i5",i5);
 }
