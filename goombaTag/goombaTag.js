@@ -139,77 +139,56 @@ function checkCollision(){
 }
 
 function loadHighScores() {
-    var s1, s2, s3, s4, s5;
-    var i1, i2, i3, i4, i5;
-    if (localStorage.length==0){
-        s1 = 999;
-        s2 = 999;
-        s3 = 999;
-        s4 = 999;
-        s5 = 999;
-        i1 = "Goomba";
-        i2 = "Goomba";
-        i3 = "Goomba";
-        i4 = "Goomba";
-        i5 = "Goomba";
-    }else{
-        s1 = parseInt(localStorage.getItem("s1"));
-        s2 = parseInt(localStorage.getItem("s2"));
-        s3 = parseInt(localStorage.getItem("s3"));
-        s4 = parseInt(localStorage.getItem("s4"));
-        s5 = parseInt(localStorage.getItem("s5"));
-        i1 = localStorage.getItem("i1");
-        i2 = localStorage.getItem("i2");
-        i3 = localStorage.getItem("i3");
-        i4 = localStorage.getItem("i4");
-        i5 = localStorage.getItem("i5");
+    var goombaScores = ["999","999","999","999","999"];
+    var goombaNames = ["Goomba","Goomba","Goomba","Goomba","Goomba"];
+    for (var i = 0; i<5; i++) {
+        if (localStorage.getItem("goombaScore"+(i+1)) != null) {
+            goombaScores[i] = parseInt(localStorage.getItem(goombaScores[i]));
+        }
+        if (localStorage.getItem("goombaName"+(i+1)) != null) {
+            goombaNames[i] = parseInt(localStorage.getItem(goombaNames[i]));
+        }
     }
-    document.getElementById("1s").innerHTML = s1+"";
-    document.getElementById("2s").innerHTML = s2+"";
-    document.getElementById("3s").innerHTML = s3+"";
-    document.getElementById("4s").innerHTML = s4+"";
-    document.getElementById("5s").innerHTML = s5+"";
-    document.getElementById("1i").innerHTML = i1;
-    document.getElementById("2i").innerHTML = i2;
-    document.getElementById("3i").innerHTML = i3;
-    document.getElementById("4i").innerHTML = i4;
-    document.getElementById("5i").innerHTML = i5;
+    for (var j = 0; i<5; i++) {
+        document.getElementById(j+"s").innerHTML = goombaScores[j];
+        document.getElementById(j+"i").innerHTML = goombaNames[j];
+    }
 }
 
 function updateHighScores() {
-    var s1 = parseInt(document.getElementById("1s").innerHTML);
-    var s2 = parseInt(document.getElementById("2s").innerHTML);
-    var s3 = parseInt(document.getElementById("3s").innerHTML);
-    var s4 = parseInt(document.getElementById("4s").innerHTML);
-    var s5 = parseInt(document.getElementById("5s").innerHTML);
-    var i1 = document.getElementById("1i").innerHTML;
-    var i2 = document.getElementById("2i").innerHTML;
-    var i3 = document.getElementById("3i").innerHTML;
-    var i4 = document.getElementById("4i").innerHTML;
-    var i5 = document.getElementById("5i").innerHTML;
-    localStorage.setItem("s1",s1+"");
-    localStorage.setItem("s2",s2+"");
-    localStorage.setItem("s3",s3+"");
-    localStorage.setItem("s4",s4+"");
-    localStorage.setItem("s5",s5+"");
-    localStorage.setItem("i1",i1);
-    localStorage.setItem("i2",i2);
-    localStorage.setItem("i3",i3);
-    localStorage.setItem("i4",i4);
-    localStorage.setItem("i5",i5);
+    var s1 = parseInt(document.getElementById("1s").innerHTML),
+        s2 = parseInt(document.getElementById("2s").innerHTML),
+        s3 = parseInt(document.getElementById("3s").innerHTML),
+        s4 = parseInt(document.getElementById("4s").innerHTML),
+        s5 = parseInt(document.getElementById("5s").innerHTML),
+        i1 = document.getElementById("1i").innerHTML,
+        i2 = document.getElementById("2i").innerHTML,
+        i3 = document.getElementById("3i").innerHTML,
+        i4 = document.getElementById("4i").innerHTML,
+        i5 = document.getElementById("5i").innerHTML;
+    localStorage.setItem("goombaScore1",s1+"");
+    localStorage.setItem("goombaScore2",s2+"");
+    localStorage.setItem("goombaScore3",s3+"");
+    localStorage.setItem("goombaScore4",s4+"");
+    localStorage.setItem("goombaScore5",s5+"");
+    localStorage.setItem("goombaName1",i1);
+    localStorage.setItem("goombaName2",i2);
+    localStorage.setItem("goombaName3",i3);
+    localStorage.setItem("goombaName4",i4);
+    localStorage.setItem("goombaName5",i5);
 }
 
 function checkHighScore(){
-    var s1 = parseInt(document.getElementById("1s").innerHTML);
-    var s2 = parseInt(document.getElementById("2s").innerHTML);
-    var s3 = parseInt(document.getElementById("3s").innerHTML);
-    var s4 = parseInt(document.getElementById("4s").innerHTML);
-    var s5 = parseInt(document.getElementById("5s").innerHTML);
-    var i1 = document.getElementById("1i").innerHTML;
-    var i2 = document.getElementById("2i").innerHTML;
-    var i3 = document.getElementById("3i").innerHTML;
-    var i4 = document.getElementById("4i").innerHTML;
-    var i5 = document.getElementById("5i").innerHTML;
+    var s1 = parseInt(document.getElementById("1s").innerHTML),
+        s2 = parseInt(document.getElementById("2s").innerHTML),
+        s3 = parseInt(document.getElementById("3s").innerHTML),
+        s4 = parseInt(document.getElementById("4s").innerHTML),
+        s5 = parseInt(document.getElementById("5s").innerHTML),
+        i1 = document.getElementById("1i").innerHTML,
+        i2 = document.getElementById("2i").innerHTML,
+        i3 = document.getElementById("3i").innerHTML,
+        i4 = document.getElementById("4i").innerHTML,
+        i5 = document.getElementById("5i").innerHTML;
     var yourInitials;
     var initialsValid = false;
 
@@ -274,16 +253,16 @@ function checkHighScore(){
 }
 
 function resetScores(){
-    s1 = 999;
-    s2 = 999;
-    s3 = 999;
-    s4 = 999;
-    s5 = 999;
-    i1 = "Goomba";
-    i2 = "Goomba";
-    i3 = "Goomba";
-    i4 = "Goomba";
-    i5 = "Goomba";
+    var s1 = 999,
+        s2 = 999,
+        s3 = 999,
+        s4 = 999,
+        s5 = 999,
+        i1 = "Goomba",
+        i2 = "Goomba",
+        i3 = "Goomba",
+        i4 = "Goomba",
+        i5 = "Goomba";
     document.getElementById("1s").innerHTML = s1+"";
     document.getElementById("2s").innerHTML = s2+"";
     document.getElementById("3s").innerHTML = s3+"";
@@ -294,14 +273,14 @@ function resetScores(){
     document.getElementById("3i").innerHTML = i3;
     document.getElementById("4i").innerHTML = i4;
     document.getElementById("5i").innerHTML = i5;
-    localStorage.setItem("s1",s1+"");
-    localStorage.setItem("s2",s2+"");
-    localStorage.setItem("s3",s3+"");
-    localStorage.setItem("s4",s4+"");
-    localStorage.setItem("s5",s5+"");
-    localStorage.setItem("i1",i1);
-    localStorage.setItem("i2",i2);
-    localStorage.setItem("i3",i3);
-    localStorage.setItem("i4",i4);
-    localStorage.setItem("i5",i5);
+    localStorage.setItem("goombaScore1",s1+"");
+    localStorage.setItem("goombaScore2",s2+"");
+    localStorage.setItem("goombaScore3",s3+"");
+    localStorage.setItem("goombaScore4",s4+"");
+    localStorage.setItem("goombaScore5",s5+"");
+    localStorage.setItem("goombaName1",i1);
+    localStorage.setItem("goombaName2",i2);
+    localStorage.setItem("goombaName3",i3);
+    localStorage.setItem("goombaName4",i4);
+    localStorage.setItem("goombaName5",i5);
 }
