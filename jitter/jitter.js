@@ -182,20 +182,57 @@ function jitterGotAway(){
 
 
 function loadHighScores() {
-    var jitterScores = ["0","0","0","0","0"];
-    var jitterNames = ["Jitter","Jitter","Jitter","Jitter","Jitter"];
-    for (var i = 0; i<5; i++) {
-        if (localStorage.getItem("jitterScore"+(i+1)) != null) {
-            jitterScores[i] = parseInt(localStorage.getItem("jitterScore"+(i+1)));
-        }
-        if (localStorage.getItem("jitterName"+(i+1)) != null) {
-            jitterNames[i] = parseInt(localStorage.getItem("jitterName"+(i+1)));
-        }
+    var s1 = "0",
+        s2 = "0",
+        s3 = "0",
+        s4 = "0",
+        s5 = "0",
+        i1 = "Jitter",
+        i2 = "Jitter",
+        i3 = "Jitter",
+        i4 = "Jitter",
+        i5 = "Jitter";
+    if (localStorage.getItem("jitterScore1") != null) {
+        s1 = parseInt(localStorage.getItem("jitterScore1"));
     }
-    for (var j = 0; i<5; i++) {
-        document.getElementById((j+1)+"s").innerHTML = jitterScores[j];
-        document.getElementById((j+1)+"i").innerHTML = jitterNames[j];
+    if (localStorage.getItem("jitterName1") != null) {
+        i1 = parseInt(localStorage.getItem("jitterName1"));
     }
+    if (localStorage.getItem("jitterScore2") != null) {
+        s2 = parseInt(localStorage.getItem("jitterScore2"));
+    }
+    if (localStorage.getItem("jitterName2") != null) {
+        i2 = parseInt(localStorage.getItem("jitterName2"));
+    }
+    if (localStorage.getItem("jitterScore3") != null) {
+        s3 = parseInt(localStorage.getItem("jitterScore3"));
+    }
+    if (localStorage.getItem("jitterName3") != null) {
+        i3 = parseInt(localStorage.getItem("jitterName3"));
+    }
+    if (localStorage.getItem("jitterScore4") != null) {
+        s4 = parseInt(localStorage.getItem("jitterScore4"));
+    }
+    if (localStorage.getItem("jitterName4") != null) {
+        i4 = parseInt(localStorage.getItem("jitterName4"));
+    }
+    if (localStorage.getItem("jitterScore5") != null) {
+        s5 = parseInt(localStorage.getItem("jitterScore5"));
+    }
+    if (localStorage.getItem("jitterName5") != null) {
+        i5 = parseInt(localStorage.getItem("jitterName5"));
+    }
+
+    document.getElementById("1s").innerHTML = s1;
+    document.getElementById("1i").innerHTML = i1;
+    document.getElementById("2s").innerHTML = s2;
+    document.getElementById("2i").innerHTML = i2;
+    document.getElementById("3s").innerHTML = s3;
+    document.getElementById("3i").innerHTML = i3;
+    document.getElementById("4s").innerHTML = s4;
+    document.getElementById("4i").innerHTML = i4;
+    document.getElementById("5s").innerHTML = s5;
+    document.getElementById("5i").innerHTML = i5;
 }
 
 function updateHighScores() {

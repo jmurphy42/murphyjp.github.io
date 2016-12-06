@@ -139,20 +139,57 @@ function checkCollision(){
 }
 
 function loadHighScores() {
-    var goombaScores = ["999","999","999","999","999"];
-    var goombaNames = ["Goomba","Goomba","Goomba","Goomba","Goomba"];
-    for (var i = 0; i<5; i++) {
-        if (localStorage.getItem("goombaScore"+(i+1)) != null) {
-            goombaScores[i] = parseInt(localStorage.getItem("goombaScore"+(i+1)));
-        }
-        if (localStorage.getItem("goombaName"+(i+1)) != null) {
-            goombaNames[i] = parseInt(localStorage.getItem("goombaName"+(i+1)));
-        }
+    var s1 = "999",
+        s2 = "999",
+        s3 = "999",
+        s4 = "999",
+        s5 = "999",
+        i1 = "Goomba",
+        i2 = "Goomba",
+        i3 = "Goomba",
+        i4 = "Goomba",
+        i5 = "Goomba";
+    if (localStorage.getItem("goombaScore1") != null) {
+        s1 = parseInt(localStorage.getItem("goombaScore1"));
     }
-    for (var j = 0; i<5; i++) {
-        document.getElementById((j+1)+"s").innerHTML = goombaScores[j];
-        document.getElementById((j+1)+"i").innerHTML = goombaNames[j];
+    if (localStorage.getItem("goombaName1") != null) {
+        i1 = parseInt(localStorage.getItem("goombaName1"));
     }
+    if (localStorage.getItem("goombaScore2") != null) {
+        s2 = parseInt(localStorage.getItem("goombaScore2"));
+    }
+    if (localStorage.getItem("goombaName2") != null) {
+        i2 = parseInt(localStorage.getItem("goombaName2"));
+    }
+    if (localStorage.getItem("goombaScore3") != null) {
+        s3 = parseInt(localStorage.getItem("goombaScore3"));
+    }
+    if (localStorage.getItem("goombaName3") != null) {
+        i3 = parseInt(localStorage.getItem("goombaName3"));
+    }
+    if (localStorage.getItem("goombaScore4") != null) {
+        s4 = parseInt(localStorage.getItem("goombaScore4"));
+    }
+    if (localStorage.getItem("goombaName4") != null) {
+        i4 = parseInt(localStorage.getItem("goombaName4"));
+    }
+    if (localStorage.getItem("goombaScore5") != null) {
+        s5 = parseInt(localStorage.getItem("goombaScore5"));
+    }
+    if (localStorage.getItem("goombaName5") != null) {
+        i5 = parseInt(localStorage.getItem("goombaName5"));
+    }
+
+    document.getElementById("1s").innerHTML = s1;
+    document.getElementById("1i").innerHTML = i1;
+    document.getElementById("2s").innerHTML = s2;
+    document.getElementById("2i").innerHTML = i2;
+    document.getElementById("3s").innerHTML = s3;
+    document.getElementById("3i").innerHTML = i3;
+    document.getElementById("4s").innerHTML = s4;
+    document.getElementById("4i").innerHTML = i4;
+    document.getElementById("5s").innerHTML = s5;
+    document.getElementById("5i").innerHTML = i5;
 }
 
 function updateHighScores() {
