@@ -143,10 +143,10 @@ function loadHighScores() {
     var goombaNames = ["Goomba","Goomba","Goomba","Goomba","Goomba"];
     for (var i = 0; i<5; i++) {
         if (localStorage.getItem("goombaScore"+(i+1)) != null) {
-            goombaScores[i] = parseInt(localStorage.getItem(goombaScores[i]));
+            goombaScores[i] = parseInt(localStorage.getItem("goombaScore"+(i+1)));
         }
         if (localStorage.getItem("goombaName"+(i+1)) != null) {
-            goombaNames[i] = parseInt(localStorage.getItem(goombaNames[i]));
+            goombaNames[i] = parseInt(localStorage.getItem("goombaName"+(i+1)));
         }
     }
     for (var j = 0; i<5; i++) {

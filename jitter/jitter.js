@@ -26,7 +26,7 @@ function checkKey(e){
     }
 }
 
-function checkClick(e){
+function checkClick(){
     if (status == 1){
         status++;
         startGame();
@@ -186,10 +186,10 @@ function loadHighScores() {
     var jitterNames = ["Jitter","Jitter","Jitter","Jitter","Jitter"];
     for (var i = 0; i<5; i++) {
         if (localStorage.getItem("jitterScore"+(i+1)) != null) {
-            jitterScores[i] = parseInt(localStorage.getItem(jitterScores[i]));
+            jitterScores[i] = parseInt(localStorage.getItem("jitterScore"+(i+1)));
         }
         if (localStorage.getItem("jitterName"+(i+1)) != null) {
-            jitterNames[i] = parseInt(localStorage.getItem(jitterNames[i]));
+            jitterNames[i] = parseInt(localStorage.getItem("jitterName"+(i+1)));
         }
     }
     for (var j = 0; i<5; i++) {
