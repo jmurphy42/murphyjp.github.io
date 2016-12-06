@@ -150,8 +150,8 @@ function loadHighScores() {
         }
     }
     for (var j = 0; i<5; i++) {
-        document.getElementById(j+"s").innerHTML = goombaScores[j];
-        document.getElementById(j+"i").innerHTML = goombaNames[j];
+        document.getElementById((j+1)+"s").innerHTML = goombaScores[j];
+        document.getElementById((j+1)+"i").innerHTML = goombaNames[j];
     }
 }
 

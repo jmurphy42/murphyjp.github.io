@@ -186,6 +186,7 @@ function loadHighScores() {
     var jitterNames = ["Jitter","Jitter","Jitter","Jitter","Jitter"];
     for (var i = 0; i<5; i++) {
         if (localStorage.getItem("jitterScore"+(i+1)) != null) {
+            alert("here");
             jitterScores[i] = parseInt(localStorage.getItem("jitterScore"+(i+1)));
         }
         if (localStorage.getItem("jitterName"+(i+1)) != null) {
@@ -193,8 +194,8 @@ function loadHighScores() {
         }
     }
     for (var j = 0; i<5; i++) {
-        document.getElementById(j+"s").innerHTML = jitterScores[j];
-        document.getElementById(j+"i").innerHTML = jitterNames[j];
+        document.getElementById((j+1)+"s").innerHTML = jitterScores[j];
+        document.getElementById((j+1)+"i").innerHTML = jitterNames[j];
     }
 }
 
