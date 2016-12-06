@@ -186,7 +186,6 @@ function loadHighScores() {
     var jitterNames = ["Jitter","Jitter","Jitter","Jitter","Jitter"];
     for (var i = 0; i<5; i++) {
         if (localStorage.getItem("jitterScore"+(i+1)) != null) {
-            alert("here");
             jitterScores[i] = parseInt(localStorage.getItem("jitterScore"+(i+1)));
         }
         if (localStorage.getItem("jitterName"+(i+1)) != null) {
