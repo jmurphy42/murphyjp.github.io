@@ -196,31 +196,31 @@ function loadHighScores() {
         s1 = parseInt(localStorage.getItem("jitterScore1"));
     }
     if (localStorage.getItem("jitterName1") != null) {
-        i1 = parseInt(localStorage.getItem("jitterName1"));
+        i1 = localStorage.getItem("jitterName1");
     }
     if (localStorage.getItem("jitterScore2") != null) {
         s2 = parseInt(localStorage.getItem("jitterScore2"));
     }
     if (localStorage.getItem("jitterName2") != null) {
-        i2 = parseInt(localStorage.getItem("jitterName2"));
+        i2 = localStorage.getItem("jitterName2");
     }
     if (localStorage.getItem("jitterScore3") != null) {
         s3 = parseInt(localStorage.getItem("jitterScore3"));
     }
     if (localStorage.getItem("jitterName3") != null) {
-        i3 = parseInt(localStorage.getItem("jitterName3"));
+        i3 = localStorage.getItem("jitterName3");
     }
     if (localStorage.getItem("jitterScore4") != null) {
         s4 = parseInt(localStorage.getItem("jitterScore4"));
     }
     if (localStorage.getItem("jitterName4") != null) {
-        i4 = parseInt(localStorage.getItem("jitterName4"));
+        i4 = localStorage.getItem("jitterName4");
     }
     if (localStorage.getItem("jitterScore5") != null) {
         s5 = parseInt(localStorage.getItem("jitterScore5"));
     }
     if (localStorage.getItem("jitterName5") != null) {
-        i5 = parseInt(localStorage.getItem("jitterName5"));
+        i5 = localStorage.getItem("jitterName5");
     }
 
     document.getElementById("1s").innerHTML = s1;

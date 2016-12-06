@@ -153,31 +153,31 @@ function loadHighScores() {
         s1 = parseInt(localStorage.getItem("goombaScore1"));
     }
     if (localStorage.getItem("goombaName1") != null) {
-        i1 = parseInt(localStorage.getItem("goombaName1"));
+        i1 = localStorage.getItem("goombaName1");
     }
     if (localStorage.getItem("goombaScore2") != null) {
         s2 = parseInt(localStorage.getItem("goombaScore2"));
     }
     if (localStorage.getItem("goombaName2") != null) {
-        i2 = parseInt(localStorage.getItem("goombaName2"));
+        i2 = localStorage.getItem("goombaName2");
     }
     if (localStorage.getItem("goombaScore3") != null) {
         s3 = parseInt(localStorage.getItem("goombaScore3"));
     }
     if (localStorage.getItem("goombaName3") != null) {
-        i3 = parseInt(localStorage.getItem("goombaName3"));
+        i3 = localStorage.getItem("goombaName3");
     }
     if (localStorage.getItem("goombaScore4") != null) {
         s4 = parseInt(localStorage.getItem("goombaScore4"));
     }
     if (localStorage.getItem("goombaName4") != null) {
-        i4 = parseInt(localStorage.getItem("goombaName4"));
+        i4 = localStorage.getItem("goombaName4");
     }
     if (localStorage.getItem("goombaScore5") != null) {
         s5 = parseInt(localStorage.getItem("goombaScore5"));
     }
     if (localStorage.getItem("goombaName5") != null) {
-        i5 = parseInt(localStorage.getItem("goombaName5"));
+        i5 = localStorage.getItem("goombaName5");
     }
 
     document.getElementById("1s").innerHTML = s1;
