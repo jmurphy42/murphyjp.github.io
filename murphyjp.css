@@ -1,0 +1,40 @@
+body{
+    background-color: gainsboro;
+    color: #252735;
+    font-family: 'Open Sans', sans-serif;
+    width: 70%;
+    margin-left: 40px;
+    padding: 20px;
+}
+h1{
+    background-color: #252735;
+    color: gainsboro;
+    font-family: 'Montserrat', sans-serif;
+    padding: 20px;
+    margin: 0;
+}
+h2{
+    background-color: #252735;
+    color: gainsboro;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: normal;
+    padding: 0 20px 20px;
+    margin: 0;
+}
+h3{
+    font-family: 'Montserrat', sans-serif;
+    border-bottom: 2px solid #252735;
+}
+#content{
+    padding: 20px 0;
+}
+a{
+    color: #904519;
+    font-weight: bolder;
+    letter-spacing: 1px;
+    text-decoration: none;
+}
+a:hover{
+    color: #9a2517;
+    text-decoration: underline;
+}
