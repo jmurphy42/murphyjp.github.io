@@ -180,15 +180,15 @@ function loadHighScores() {
         i5 = localStorage.getItem("goombaName5");
     }
 
-    document.getElementById("1s").innerHTML = s1;
+    document.getElementById("1s").innerHTML = s1+"";
     document.getElementById("1i").innerHTML = i1;
-    document.getElementById("2s").innerHTML = s2;
+    document.getElementById("2s").innerHTML = s2+"";
     document.getElementById("2i").innerHTML = i2;
-    document.getElementById("3s").innerHTML = s3;
+    document.getElementById("3s").innerHTML = s3+"";
     document.getElementById("3i").innerHTML = i3;
-    document.getElementById("4s").innerHTML = s4;
+    document.getElementById("4s").innerHTML = s4+"";
     document.getElementById("4i").innerHTML = i4;
-    document.getElementById("5s").innerHTML = s5;
+    document.getElementById("5s").innerHTML = s5+"";
     document.getElementById("5i").innerHTML = i5;
 }
 

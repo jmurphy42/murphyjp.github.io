@@ -3,9 +3,12 @@
  */
 document.onkeydown = checkKey;
 
-var interval = 1;
+var interval = 30;
+var startingInterval = 30;
+var intervalReached = 0;
 var cycle = 0;
-var speed = 1;
+var speed = 4;
+var startingSpeed = 4;
 var status = 1;
 var timeElapsed = 0;
 var direction = 0; //0up 1upright 2right 3downleft 4down 5downleft 6left 7upleft
@@ -38,6 +41,7 @@ function startGame(){
 }
 
 function cycleGame(){
+    clearInterval(cycle);
     if (status > 1){
         cycle = setInterval(moveJitter,interval);
     }
@@ -65,9 +69,15 @@ function changeDirection(){
 }
 
 function changeSpeed(){
-    var incSpeed = parseInt(timeElapsed/1000);
-    incSpeed++;
-    speed = incSpeed;
+    if (interval>1){
+        var decInterval = parseInt(timeElapsed/1000);
+        interval = startingInterval - decInterval;
+        intervalReached = timeElapsed;
+        cycleGame();
+    }else{
+        var incSpeed = parseInt((timeElapsed-intervalReached)/1000);
+        speed = startingSpeed + incSpeed;
+    }
 }
 
 function moveJitter(){
@@ -145,22 +155,22 @@ function moveRight(speed){
 }
 
 function moveUpLeft(speed){
-    var partSpeed = parseInt(Math.sqrt(speed/2));
+    var partSpeed = parseInt(Math.sqrt(Math.pow(speed,2)/2));
     moveUp(partSpeed);
     moveLeft(partSpeed);
 }
 function moveUpRight(speed){
-    var partSpeed = parseInt(Math.sqrt(speed/2));
+    var partSpeed = parseInt(Math.sqrt(Math.pow(speed,2)/2));
     moveUp(partSpeed);
     moveRight(partSpeed);
 }
 function moveDownLeft(speed){
-    var partSpeed = parseInt(Math.sqrt(speed/2));
+    var partSpeed = parseInt(Math.sqrt(Math.pow(speed,2)/2));
     moveDown(partSpeed);
     moveLeft(partSpeed);
 }
 function moveDownRight(speed){
-    var partSpeed = parseInt(Math.sqrt(speed/2));
+    var partSpeed = parseInt(Math.sqrt(Math.pow(speed,2)/2));
     moveDown(partSpeed);
     moveRight(partSpeed);
 }
@@ -223,15 +233,15 @@ function loadHighScores() {
         i5 = localStorage.getItem("jitterName5");
     }
 
-    document.getElementById("1s").innerHTML = s1;
+    document.getElementById("1s").innerHTML = s1+"";
     document.getElementById("1i").innerHTML = i1;
-    document.getElementById("2s").innerHTML = s2;
+    document.getElementById("2s").innerHTML = s2+"";
     document.getElementById("2i").innerHTML = i2;
-    document.getElementById("3s").innerHTML = s3;
+    document.getElementById("3s").innerHTML = s3+"";
     document.getElementById("3i").innerHTML = i3;
-    document.getElementById("4s").innerHTML = s4;
+    document.getElementById("4s").innerHTML = s4+"";
     document.getElementById("4i").innerHTML = i4;
-    document.getElementById("5s").innerHTML = s5;
+    document.getElementById("5s").innerHTML = s5+"";
     document.getElementById("5i").innerHTML = i5;
 }
 
