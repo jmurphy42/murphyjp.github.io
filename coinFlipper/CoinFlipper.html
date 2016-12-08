@@ -1,0 +1,175 @@
+<!-- Jason Murphy (murphyjp)
+     Lab 2: Introduction to JavaScript
+     SE2840 Web Application Development
+     MSOE, Dr. Jay Urbain -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Coin Flipper</title>
+    <script type="application/javascript" src="CoinFlipper.js"></script>
+    <link type="text/css" rel="stylesheet" href="CoinFlipper.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+</head>
+<body onload="initCoinFlipper()">
+<div id="home"><a href="../index.html">🏠</a></div>
+<h1>Coin Flipper</h1>
+
+<form title="myForm">
+    <table>
+        <tr>
+            <td class="tableLabel">Number of coins:</td>
+            <td><input id="coinForm" class="input" title="numCoins" type="text" value="5"/></td>
+            <td class="error" id="coinError"></td>
+        </tr>
+        <tr>
+            <td class="tableLabel">Number of flips:</td>
+            <td><input id="flipForm" class="input" title="numFlips" type="text" value="100000"/></td>
+            <td class="error" id="flipError"></td>
+        </tr>
+    </table>
+</form>
+<table>
+    <tr>
+        <td class="tableLabel"></td>
+        <td>
+            <button id="button" class="button" onclick="parseInput()">Flip Coins</button>
+        </td>
+    </tr>
+</table>
+
+<div id="flipper">
+    <div id="dataTitle" class="outputRow">
+        Number of times each head count occurred:
+    </div>
+    <table id="dataTable">
+        <tbody>
+        <tr id="r0" class="outputRow">
+            <td class="dataLabel">0</td>
+            <td id="n0" class="data">0</td>
+            <td>
+                <div class="dataBar" id="firstDataBar">
+                    <div id="pb0" class="progressBar">
+                        <div id="pbn0" class="progressNumber">0%</div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr id="r1" class="outputRow">
+            <td class="dataLabel">1</td>
+            <td id="n1" class="data">0</td>
+            <td>
+                <div class="dataBar">
+                    <div id="pb1" class="progressBar">
+                        <div id="pbn1" class="progressNumber">0%</div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr id="r2" class="outputRow">
+            <td class="dataLabel">2</td>
+            <td id="n2" class="data">0</td>
+            <td>
+                <div class="dataBar">
+                    <div id="pb2" class="progressBar">
+                        <div id="pbn2" class="progressNumber">0%</div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr id="r3" class="outputRow">
+            <td class="dataLabel">3</td>
+            <td id="n3" class="data">0</td>
+            <td>
+                <div class="dataBar">
+                    <div id="pb3" class="progressBar">
+                        <div id="pbn3" class="progressNumber">0%</div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr id="r4" class="outputRow">
+            <td class="dataLabel">4</td>
+            <td id="n4" class="data">0</td>
+            <td>
+                <div class="dataBar">
+                    <div id="pb4" class="progressBar">
+                        <div id="pbn4" class="progressNumber">0%</div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr id="r5" class="outputRow">
+            <td class="dataLabel">5</td>
+            <td id="n5" class="data">0</td>
+            <td>
+                <div class="dataBar">
+                    <div id="pb5" class="progressBar">
+                        <div id="pbn5" class="progressNumber">0%</div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr id="r6" class="outputRow">
+            <td class="dataLabel">6</td>
+            <td id="n6" class="data">0</td>
+            <td>
+                <div class="dataBar">
+                    <div id="pb6" class="progressBar">
+                        <div id="pbn6" class="progressNumber">0%</div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr id="r7" class="outputRow">
+            <td class="dataLabel">7</td>
+            <td id="n7" class="data">0</td>
+            <td>
+                <div class="dataBar">
+                    <div id="pb7" class="progressBar">
+                        <div id="pbn7" class="progressNumber">0%</div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr id="r8" class="outputRow">
+            <td class="dataLabel">8</td>
+            <td id="n8" class="data">0</td>
+            <td>
+                <div class="dataBar">
+                    <div id="pb8" class="progressBar">
+                        <div id="pbn8" class="progressNumber">0%</div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr id="r9" class="outputRow">
+            <td class="dataLabel">9</td>
+            <td id="n9" class="data">0</td>
+            <td>
+                <div class="dataBar">
+                    <div id="pb9" class="progressBar">
+                        <div id="pbn9" class="progressNumber">0%</div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr id="r10" class="outputRow">
+            <td class="dataLabel">10</td>
+            <td id="n10" class="data">0</td>
+            <td>
+                <div class="dataBar">
+                    <div id="pb10" class="progressBar">
+                        <div id="pbn10" class="progressNumber">0%</div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div id="dataTimer" class="outputRow">
+        Coin Flipper Time: <span id="timer">0</span>ms
+    </div>
+</div>
+</body>
+</html>
