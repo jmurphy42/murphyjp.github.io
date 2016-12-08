@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Goomba Tag</title>
+    <title>Goomba Tag II</title>
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-    <script src="goombaTag.js"></script>
+    <script src="goombaTag2.js"></script>
     <link type="text/css" rel="stylesheet" href="goombaTag.css" />
 </head>
 <body onload="loadHighScores()">
 <div id="home"><a href="../index.html">🏠</a></div>
-<h1>Goomba Tag</h1>
+<h1>Goomba Tag II</h1>
 <div id="gameFrame">
     <div class="goomba" id="goomba0"></div>
     <div class="goomba" id="goomba1"></div>
@@ -23,6 +23,10 @@
     <div class="goomba" id="goomba9"></div>
     <div class="goomba" id="goomba10"></div>
     <div class="goomba" id="goomba11"></div>
+    <div class="goomba" id="goomba12"></div>
+    <div class="goomba" id="goomba13"></div>
+    <div class="goomba" id="goomba14"></div>
+    <div class="goomba" id="goomba15"></div>
     <div id="player"></div>
 </div>
 <div id="restartGame">
@@ -35,11 +39,11 @@
     <h3>High Scores</h3>
     <div class="scores">
         <ol>
-            <li><span id="1s">999</span> · <span id="1i">Goomba</span></li>
-            <li><span id="2s">999</span> · <span id="2i">Goomba</span></li>
-            <li><span id="3s">999</span> · <span id="3i">Goomba</span></li>
-            <li><span id="4s">999</span> · <span id="4i">Goomba</span></li>
-            <li><span id="5s">999</span> · <span id="5i">Goomba</span></li>
+            <li><span id="1s">0</span> · <span id="1i">Goomba</span></li>
+            <li><span id="2s">0</span> · <span id="2i">Goomba</span></li>
+            <li><span id="3s">0</span> · <span id="3i">Goomba</span></li>
+            <li><span id="4s">0</span> · <span id="4i">Goomba</span></li>
+            <li><span id="5s">0</span> · <span id="5i">Goomba</span></li>
         </ol>
         <p class="buttonize" onclick="resetScores()">
             Reset Scores
@@ -48,9 +52,11 @@
     <h3>Instructions</h3>
     <ul>
         <li>Move the blue goomba around the board by clicking the arrow (or WASD) keys.</li>
-        <li>Try to tag each of the brown goombas.</li>
-        <li>When all goombas are tagged, the game is over.</li>
-        <li>Try to tag 'em all in the fewest possible moves!</li>
+        <li>Try to avoid getting tagged by the brown goombas.</li>
+        <li>Red goombas moved intelligently—towards you!</li>
+        <li>Bright red goombas moved quickly and intelligently—towards you twice!</li>
+        <li>When a goomba tags you, the game is over.</li>
+        <li>Try to last for the most possible moves!</li>
     </ul>
 </div>
 <h2 id="msg">

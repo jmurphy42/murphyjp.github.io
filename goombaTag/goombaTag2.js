@@ -1,12 +1,12 @@
 /**
- * Created by murphyjp on 12/5/2016.
+ * Created by murphyjp on 12/8/2016.
  */
 document.onkeydown = checkKey;
 
 var nMovements = 0;
 var speed = 20;
 var goombaSpeed = 20;
-var numGoombas = 12;
+var numGoombas = 16;
 var status = 1;
 var goombaStatus = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1];
 
@@ -66,22 +66,74 @@ function moveGoombas(goombaSpeed) {
     for (var i = 0; i < numGoombas; i++) {
         if (goombaStatus[i] == 1) {
             var goomba = document.getElementById('goomba' + (i));
-            var randomDirection = parseInt(Math.random() * 4);
-            switch (randomDirection) {
-                case 0:
-                    moveUp(goomba, goombaSpeed);
-                    break;
-                case 1:
-                    moveDown(goomba, goombaSpeed);
-                    break;
-                case 2:
-                    moveLeft(goomba, goombaSpeed);
-                    break;
-                case 3:
-                    moveRight(goomba, goombaSpeed);
-                    break;
+            var smartGoomba = parseInt(Math.random() * 7);
+            if (smartGoomba<=1){ //move goomba smartly
+                goomba.style.backgroundColor = "#9a2517";
+                smartGoombaMove(goomba, goombaSpeed);
+            }else if (smartGoomba==2){ //move goomba quickly
+                goomba.style.backgroundColor = "#ff0f0f";
+                fastGoombaMove(goomba, goombaSpeed);
+            }else{
+                goomba.style.backgroundColor = "#904519";
+                var randomDirection = parseInt(Math.random() * 4);
+                switch (randomDirection) {
+                    case 0:
+                        moveUp(goomba, goombaSpeed);
+                        break;
+                    case 1:
+                        moveDown(goomba, goombaSpeed);
+                        break;
+                    case 2:
+                        moveLeft(goomba, goombaSpeed);
+                        break;
+                    case 3:
+                        moveRight(goomba, goombaSpeed);
+                        break;
+                }
             }
             checkCollision();
+        }
+    }
+}
+
+function fastGoombaMove(goomba, goombaSpeed){
+    smartGoombaMove(goomba, goombaSpeed);
+    smartGoombaMove(goomba, goombaSpeed);
+}
+
+function smartGoombaMove(goomba, goombaSpeed){
+    var player = document.getElementById('player');
+    var playerTop = parseInt(player.style.top);
+    var playerLeft = parseInt(player.style.left);
+    var goombaTop = parseInt(goomba.style.top);
+    var goombaLeft = parseInt(goomba.style.left);
+
+    if(playerTop==goombaTop){
+        if (playerLeft<goombaLeft){
+            moveLeft(goomba, goombaSpeed);
+        }else{
+            moveRight(goomba, goombaSpeed);
+        }
+    }else if(playerLeft==goombaLeft){
+        if (playerTop<goombaTop){
+            moveUp(goomba, goombaSpeed);
+        }else{
+            moveDown(goomba, goombaSpeed);
+        }
+    }else{
+        var r = parseInt(Math.random()*2);
+        if (r==0){
+            if (playerLeft<goombaLeft){
+                moveLeft(goomba, goombaSpeed);
+            }else{
+                moveRight(goomba, goombaSpeed);
+            }
+        }else{
+            if (playerTop<goombaTop){
+                moveUp(goomba, goombaSpeed);
+            }else{
+                moveDown(goomba, goombaSpeed);
+            }
         }
     }
 }
@@ -127,7 +179,7 @@ function checkCollision(){
             goomba.offsetLeft === player.offsetLeft){
             goombaStatus[i] = 0;
             goomba.style.backgroundColor = "#217225";
-            status++;
+            status = (numGoombas+1);
         }
     }
     if (status==(numGoombas+1)){
@@ -140,45 +192,45 @@ function checkCollision(){
 }
 
 function loadHighScores() {
-    var s1 = "999",
-        s2 = "999",
-        s3 = "999",
-        s4 = "999",
-        s5 = "999",
+    var s1 = "0",
+        s2 = "0",
+        s3 = "0",
+        s4 = "0",
+        s5 = "0",
         i1 = "Goomba",
         i2 = "Goomba",
         i3 = "Goomba",
         i4 = "Goomba",
         i5 = "Goomba";
-    if (localStorage.getItem("goombaScore1") != null) {
-        s1 = parseInt(localStorage.getItem("goombaScore1"));
+    if (localStorage.getItem("goomba2Score1") != null) {
+        s1 = parseInt(localStorage.getItem("goomba2Score1"));
     }
-    if (localStorage.getItem("goombaName1") != null) {
-        i1 = localStorage.getItem("goombaName1");
+    if (localStorage.getItem("goomba2Name1") != null) {
+        i1 = localStorage.getItem("goomba2Name1");
     }
-    if (localStorage.getItem("goombaScore2") != null) {
-        s2 = parseInt(localStorage.getItem("goombaScore2"));
+    if (localStorage.getItem("goomba2Score2") != null) {
+        s2 = parseInt(localStorage.getItem("goomba2Score2"));
     }
-    if (localStorage.getItem("goombaName2") != null) {
-        i2 = localStorage.getItem("goombaName2");
+    if (localStorage.getItem("goomba2Name2") != null) {
+        i2 = localStorage.getItem("goomba2Name2");
     }
-    if (localStorage.getItem("goombaScore3") != null) {
-        s3 = parseInt(localStorage.getItem("goombaScore3"));
+    if (localStorage.getItem("goomba2Score3") != null) {
+        s3 = parseInt(localStorage.getItem("goomba2Score3"));
     }
-    if (localStorage.getItem("goombaName3") != null) {
-        i3 = localStorage.getItem("goombaName3");
+    if (localStorage.getItem("goomba2Name3") != null) {
+        i3 = localStorage.getItem("goomba2Name3");
     }
-    if (localStorage.getItem("goombaScore4") != null) {
-        s4 = parseInt(localStorage.getItem("goombaScore4"));
+    if (localStorage.getItem("goomba2Score4") != null) {
+        s4 = parseInt(localStorage.getItem("goomba2Score4"));
     }
-    if (localStorage.getItem("goombaName4") != null) {
-        i4 = localStorage.getItem("goombaName4");
+    if (localStorage.getItem("goomba2Name4") != null) {
+        i4 = localStorage.getItem("goomba2Name4");
     }
-    if (localStorage.getItem("goombaScore5") != null) {
-        s5 = parseInt(localStorage.getItem("goombaScore5"));
+    if (localStorage.getItem("goomba2Score5") != null) {
+        s5 = parseInt(localStorage.getItem("goomba2Score5"));
     }
-    if (localStorage.getItem("goombaName5") != null) {
-        i5 = localStorage.getItem("goombaName5");
+    if (localStorage.getItem("goomba2Name5") != null) {
+        i5 = localStorage.getItem("goomba2Name5");
     }
 
     document.getElementById("1s").innerHTML = s1+"";
@@ -204,16 +256,16 @@ function updateHighScores() {
         i3 = document.getElementById("3i").innerHTML,
         i4 = document.getElementById("4i").innerHTML,
         i5 = document.getElementById("5i").innerHTML;
-    localStorage.setItem("goombaScore1",s1+"");
-    localStorage.setItem("goombaScore2",s2+"");
-    localStorage.setItem("goombaScore3",s3+"");
-    localStorage.setItem("goombaScore4",s4+"");
-    localStorage.setItem("goombaScore5",s5+"");
-    localStorage.setItem("goombaName1",i1);
-    localStorage.setItem("goombaName2",i2);
-    localStorage.setItem("goombaName3",i3);
-    localStorage.setItem("goombaName4",i4);
-    localStorage.setItem("goombaName5",i5);
+    localStorage.setItem("goomba2Score1",s1+"");
+    localStorage.setItem("goomba2Score2",s2+"");
+    localStorage.setItem("goomba2Score3",s3+"");
+    localStorage.setItem("goomba2Score4",s4+"");
+    localStorage.setItem("goomba2Score5",s5+"");
+    localStorage.setItem("goomba2Name1",i1);
+    localStorage.setItem("goomba2Name2",i2);
+    localStorage.setItem("goomba2Name3",i3);
+    localStorage.setItem("goomba2Name4",i4);
+    localStorage.setItem("goomba2Name5",i5);
 }
 
 function checkHighScore(){
@@ -230,7 +282,7 @@ function checkHighScore(){
     var yourInitials;
     var initialsValid = false;
 
-    if (nMovements < s5) {
+    if (nMovements > s5) {
         while (!initialsValid) {
             yourInitials = prompt("You earned a place on the Score Board!\n" +
                 "Enter your name or initials:", "You");
@@ -242,7 +294,7 @@ function checkHighScore(){
             }
         }
     }
-    if (nMovements < s1){
+    if (nMovements > s1){
         s5=s4;
         s4=s3;
         s3=s2;
@@ -253,7 +305,7 @@ function checkHighScore(){
         i3=i2;
         i2=i1;
         i1=yourInitials;
-    }else if (nMovements < s2){
+    }else if (nMovements > s2){
         s5=s4;
         s4=s3;
         s3=s2;
@@ -262,19 +314,19 @@ function checkHighScore(){
         i4=i3;
         i3=i2;
         i2=yourInitials;
-    }else if (nMovements < s3){
+    }else if (nMovements > s3){
         s5=s4;
         s4=s3;
         s3=nMovements;
         i5=i4;
         i4=i3;
         i3=yourInitials;
-    }else if (nMovements < s4){
+    }else if (nMovements > s4){
         s5=s4;
         s4=nMovements;
         i5=i4;
         i4=yourInitials;
-    }else if (nMovements < s5){
+    }else if (nMovements > s5){
         s5=nMovements;
         i5=yourInitials;
     }
@@ -291,11 +343,11 @@ function checkHighScore(){
 }
 
 function resetScores(){
-    var s1 = 999,
-        s2 = 999,
-        s3 = 999,
-        s4 = 999,
-        s5 = 999,
+    var s1 = 0,
+        s2 = 0,
+        s3 = 0,
+        s4 = 0,
+        s5 = 0,
         i1 = "Goomba",
         i2 = "Goomba",
         i3 = "Goomba",
@@ -311,14 +363,14 @@ function resetScores(){
     document.getElementById("3i").innerHTML = i3;
     document.getElementById("4i").innerHTML = i4;
     document.getElementById("5i").innerHTML = i5;
-    localStorage.setItem("goombaScore1",s1+"");
-    localStorage.setItem("goombaScore2",s2+"");
-    localStorage.setItem("goombaScore3",s3+"");
-    localStorage.setItem("goombaScore4",s4+"");
-    localStorage.setItem("goombaScore5",s5+"");
-    localStorage.setItem("goombaName1",i1);
-    localStorage.setItem("goombaName2",i2);
-    localStorage.setItem("goombaName3",i3);
-    localStorage.setItem("goombaName4",i4);
-    localStorage.setItem("goombaName5",i5);
+    localStorage.setItem("goomba2Score1",s1+"");
+    localStorage.setItem("goomba2Score2",s2+"");
+    localStorage.setItem("goomba2Score3",s3+"");
+    localStorage.setItem("goomba2Score4",s4+"");
+    localStorage.setItem("goomba2Score5",s5+"");
+    localStorage.setItem("goomba2Name1",i1);
+    localStorage.setItem("goomba2Name2",i2);
+    localStorage.setItem("goomba2Name3",i3);
+    localStorage.setItem("goomba2Name4",i4);
+    localStorage.setItem("goomba2Name5",i5);
 }

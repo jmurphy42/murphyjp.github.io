@@ -87,44 +87,72 @@ a:hover{
     width: 20px;
     height: 20px;
     position: absolute;
+    -webkit-transition: background-color 250ms linear;
+    -moz-transition: background-color 250ms linear;
+    -o-transition: background-color 250ms linear;
+    transition: background-color 250ms linear;
 }
 #goomba0{
-    left: 120px;
-    top: 100px;
+    left: 80px;
+    top: 240px;
 }
 #goomba1{
     left: 240px;
-    top: 60px;
+    top: 80px;
 }
 #goomba2{
-    left: 360px;
-    top: 100px;
+    left: 400px;
+    top: 240px;
 }
 #goomba3{
-    left: 60px;
-    top: 180px;
+    left: 240px;
+    top: 400px;
 }
 #goomba4{
-    left: 420px;
+    left: 80px;
     top: 180px;
 }
 #goomba5{
-    left: 420px;
-    top: 300px;
+    left: 180px;
+    top: 80px;
 }
 #goomba6{
-    left: 60px;
-    top: 300px;
+    left: 300px;
+    top: 80px;
 }
 #goomba7{
-    left: 360px;
-    top: 380px;
+    left: 400px;
+    top: 180px;
 }
 #goomba8{
-    left: 240px;
-    top: 420px;
+    left: 400px;
+    top: 300px;
 }
 #goomba9{
+    left: 300px;
+    top: 400px;
+}
+#goomba10{
+    left: 180px;
+    top: 400px;
+}
+#goomba11{
+    left: 80px;
+    top: 300px;
+}
+#goomba12{
     left: 120px;
-    top: 380px;
+    top: 120px;
+}
+#goomba13 {
+    left: 360px;
+    top: 120px;
+}
+#goomba14{
+    left: 360px;
+    top: 360px;
+}
+#goomba15{
+    left: 120px;
+    top: 360px;
 }
