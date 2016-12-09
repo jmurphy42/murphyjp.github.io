@@ -12,14 +12,11 @@ function sendScores() {
         name3 = (document.getElementById("name3").innerHTML),
         name4 = (document.getElementById("name4").innerHTML),
         name5 = (document.getElementById("name5").innerHTML);
-    var data = "score1="+score1+"&name1="+name1+"&score2="+score2+"&name2="+name2+
-        "&score3="+score3+"&name3="+name3+"&score4="+score4+"&name4="+name4+
-        "&score5="+score5+"&name5="+name5;
 
-    alert("I am about to POST this:\n\n" + data);
+    alert("I am about to POST something");
 
     var xhr = new XMLHttpRequest();
-    var url = "scores.json";
+    var url = "scores.xml";
     xhr.open("POST", url, true);
     xhr.setRequestHeader('Content-type', 'application/json');
     xhr.setRequestHeader('Content-length', data.length+"");
@@ -36,35 +33,20 @@ function sendScores() {
 
 function getScores(){
     var xhr = new XMLHttpRequest();
-    var url = "scores.json";
+    var url = "scores.xml";
 
     xhr.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
-            var response = this.responseText;
-            // var data = JSON.parse(response);
-            alert("Trying to parse this: "+response);
-            var score1 = response[0],
-                score2 = response[1],
-                score3 = response[2],
-                score4 = response[3],
-                score5 = response[4];
-            var name1 = response[5],
-                name2 = response[6],
-                name3 = response[7],
-                name4 = response[8],
-                name5 = response[9];
-            document.getElementById("score1").innerHTML=score1+"";
-            document.getElementById("score2").innerHTML=score2+"";
-            document.getElementById("score3").innerHTML=score3+"";
-            document.getElementById("score4").innerHTML=score4+"";
-            document.getElementById("score5").innerHTML=score5+"";
-            document.getElementById("name1").innerHTML=name1;
-            document.getElementById("name2").innerHTML=name2;
-            document.getElementById("name3").innerHTML=name3;
-            document.getElementById("name4").innerHTML=name4;
-            document.getElementById("name5").innerHTML=name5;
+            var xml = this.responseXML;
+            var scores = xml.getElementsByTagName("score");
+            var names = xml.getElementsByTagName("name");
+            for (var i = 0; i<scores.length; i++){
+                document.getElementById("score"+(i+1)).innerHTML=scores[i];
+                document.getElementById("name"+(i+1)).innerHTML=names[i];
+            }
         }
     };
+
     xhr.open('GET', url, true);
     xhr.send();
 }
