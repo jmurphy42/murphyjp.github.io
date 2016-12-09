@@ -41,18 +41,18 @@ function getScores(){
     xhr.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             var response = this.responseText;
-            var data = JSON.parse(response);
+            // var data = JSON.parse(response);
             alert("Trying to parse this: "+response);
-            var score1 = data[0],
-                score2 = data[1],
-                score3 = data[2],
-                score4 = data[3],
-                score5 = data[4];
-            var name1 = data[5],
-                name2 = data[6],
-                name3 = data[7],
-                name4 = data[8],
-                name5 = data[9];
+            var score1 = response[0],
+                score2 = response[1],
+                score3 = response[2],
+                score4 = response[3],
+                score5 = response[4];
+            var name1 = response[5],
+                name2 = response[6],
+                name3 = response[7],
+                name4 = response[8],
+                name5 = response[9];
             document.getElementById("score1").innerHTML=score1+"";
             document.getElementById("score2").innerHTML=score2+"";
             document.getElementById("score3").innerHTML=score3+"";
