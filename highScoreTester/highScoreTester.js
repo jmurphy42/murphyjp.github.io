@@ -40,20 +40,17 @@ function getScores(){
 
     xhr.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
-            var data = this.responseText;
-            data = JSON.parse(data);
-            alert(data);
-            alert(data.content);
-            var score1 = data.content("score1"),
-                score2 = data.content("score2"),
-                score3 = data.content("score3"),
-                score4 = data.content("score4"),
-                score5 = data.content("score5");
-            var name1 = data.content("name1"),
-                name2 = data.content("name2"),
-                name3 = data.content("name3"),
-                name4 = data.content("name4"),
-                name5 = data.content("name5");
+            var data = JSON.parse(this.responseText);
+            var score1 = data.content["score1"],
+                score2 = data.content["score2"],
+                score3 = data.content["score3"],
+                score4 = data.content["score4"],
+                score5 = data.content["score5"];
+            var name1 = data.content["name1"],
+                name2 = data.content["name2"],
+                name3 = data.content["name3"],
+                name4 = data.content["name4"],
+                name5 = data.content["name5"];
             document.getElementById("score1").innerHTML=score1+"";
             document.getElementById("score2").innerHTML=score2+"";
             document.getElementById("score3").innerHTML=score3+"";
