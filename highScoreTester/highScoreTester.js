@@ -41,27 +41,27 @@ function getScores(){
     xhr.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             var data = this.responseText;
-            alert("The response: "+data);
-            // var score1 = data.getItem("score1"),
-            //     score2 = data.getItem("score2"),
-            //     score3 = data.getItem("score3"),
-            //     score4 = data.getItem("score4"),
-            //     score5 = data.getItem("score5");
-            // var name1 = data.getItem("name1"),
-            //     name2 = data.getItem("name2"),
-            //     name3 = data.getItem("name3"),
-            //     name4 = data.getItem("name4"),
-            //     name5 = data.getItem("name5");
-            // document.getElementById("score1").innerHTML=score1+"";
-            // document.getElementById("score2").innerHTML=score2+"";
-            // document.getElementById("score3").innerHTML=score3+"";
-            // document.getElementById("score4").innerHTML=score4+"";
-            // document.getElementById("score5").innerHTML=score5+"";
-            // document.getElementById("name1").innerHTML=name1;
-            // document.getElementById("name2").innerHTML=name2;
-            // document.getElementById("name3").innerHTML=name3;
-            // document.getElementById("name4").innerHTML=name4;
-            // document.getElementById("name5").innerHTML=name5;
+            data = JSON.parse(data);
+            var score1 = data.getItem("score1"),
+                score2 = data.getItem("score2"),
+                score3 = data.getItem("score3"),
+                score4 = data.getItem("score4"),
+                score5 = data.getItem("score5");
+            var name1 = data.getItem("name1"),
+                name2 = data.getItem("name2"),
+                name3 = data.getItem("name3"),
+                name4 = data.getItem("name4"),
+                name5 = data.getItem("name5");
+            document.getElementById("score1").innerHTML=score1+"";
+            document.getElementById("score2").innerHTML=score2+"";
+            document.getElementById("score3").innerHTML=score3+"";
+            document.getElementById("score4").innerHTML=score4+"";
+            document.getElementById("score5").innerHTML=score5+"";
+            document.getElementById("name1").innerHTML=name1;
+            document.getElementById("name2").innerHTML=name2;
+            document.getElementById("name3").innerHTML=name3;
+            document.getElementById("name4").innerHTML=name4;
+            document.getElementById("name5").innerHTML=name5;
         }
     };
     xhr.open('GET', url, true);
