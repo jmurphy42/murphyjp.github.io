@@ -13,6 +13,12 @@ function sendScores() {
         name4 = (document.getElementById("name4").innerHTML),
         name5 = (document.getElementById("name5").innerHTML);
 
+    var data = "<highscores><n1><score>"+score1+"</score><name>"+name1+"</name></n1>"+
+            "<n2><score>"+score2+"</score><name>"+name2+"</name></n2>"+
+            "<n3><score>"+score3+"</score><name>"+name3+"</name></n3>"+
+            "<n4><score>"+score4+"</score><name>"+name4+"</name></n4>"+
+            "<n5><score>"+score5+"</score><name>"+name5+"</name></n5></highscores>";
+
     alert("I am about to POST something");
 
     var xhr = new XMLHttpRequest();
@@ -40,10 +46,9 @@ function getScores(){
             var xml = this.responseXML;
             var scores = xml.getElementsByTagName("score");
             var names = xml.getElementsByTagName("name");
-            alert(scores.toString());
             for (var i = 0; i<scores.length; i++){
-                document.getElementById("score"+(i+1)).innerHTML=scores[i];
-                document.getElementById("name"+(i+1)).innerHTML=names[i];
+                document.getElementById("score"+(i+1)).innerHTML=scores[i].toString();
+                document.getElementById("name"+(i+1)).innerHTML=names[i].toString();
             }
         }
     };
