@@ -40,7 +40,8 @@ function getScores(){
 
     xhr.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
-            var data = this.responseText;
+            var json = JSON.stringify(this.responseText);
+            var data = JSON.parse(json);
             alert("Response as JSON: "+data);
             var score1 = data.content["score1"],
                 score2 = data.content["score2"],
