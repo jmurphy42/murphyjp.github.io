@@ -41,7 +41,7 @@ function getScores(){
     xhr.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             var data = this.responseText;
-            alert(data);
+            alert("The response: "+data);
             // var score1 = data.getItem("score1"),
             //     score2 = data.getItem("score2"),
             //     score3 = data.getItem("score3"),
