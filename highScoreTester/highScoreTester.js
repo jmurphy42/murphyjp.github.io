@@ -18,13 +18,13 @@ function sendScores() {
     var xhr = new XMLHttpRequest();
     var url = "scores.xml";
     xhr.open("POST", url, true);
-    xhr.setRequestHeader('Content-type', 'application/json');
+    xhr.setRequestHeader('Content-type', 'text/xml');
     xhr.setRequestHeader('Content-length', data.length+"");
     xhr.setRequestHeader('Connection', 'close');
 
     xhr.onreadystatechange = function() {//Call a function when the state changes.
         if(xhr.readyState == 4 && xhr.status == 200) {
-            alert(xhr.responseText);
+            console.log(xhr.responseText);
         }
     };
 
@@ -40,6 +40,7 @@ function getScores(){
             var xml = this.responseXML;
             var scores = xml.getElementsByTagName("score");
             var names = xml.getElementsByTagName("name");
+            alert(scores.toString());
             for (var i = 0; i<scores.length; i++){
                 document.getElementById("score"+(i+1)).innerHTML=scores[i];
                 document.getElementById("name"+(i+1)).innerHTML=names[i];
