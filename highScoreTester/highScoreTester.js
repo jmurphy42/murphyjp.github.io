@@ -42,6 +42,8 @@ function getScores(){
         if (this.readyState == 4 && this.status == 200) {
             var data = this.responseText;
             data = JSON.parse(data);
+            alert(data);
+            alert(data.content);
             var score1 = data.content("score1"),
                 score2 = data.content("score2"),
                 score3 = data.content("score3"),
