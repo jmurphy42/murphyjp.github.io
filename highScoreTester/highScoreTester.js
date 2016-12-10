@@ -29,22 +29,19 @@ function sendScores() {
     };
 
     alert("I am about to POST this: "+data.toString());
-
-    var json = JSON.stringify(data);
-    var xhr = new XMLHttpRequest();
     var url = "scores.json";
-    xhr.open("POST", url, true);
-    xhr.setRequestHeader('Content-type', 'application/json');
-    xhr.setRequestHeader('Content-length', json.length+"");
-    xhr.setRequestHeader('Connection', 'close');
+    $(url).find("score1").setData("number",score1);
+    $(url).find("score2").setData("number",score2);
+    $(url).find("score3").setData("number",score3);
+    $(url).find("score4").setData("number",score4);
+    $(url).find("score5").setData("number",score5);
+    $(url).find("name1").setData("text",name1);
+    $(url).find("name2").setData("text",name2);
+    $(url).find("name3").setData("text",name3);
+    $(url).find("name4").setData("text",name4);
+    $(url).find("name5").setData("text",name5);
 
-    xhr.onreadystatechange = function() {//Call a function when the state changes.
-        if(xhr.readyState == 4 && xhr.status == 200) {
-            console.log(xhr.responseText);
-        }
-    };
 
-    xhr.send(json);
 }
 
 function getScores(){
@@ -54,12 +51,26 @@ function getScores(){
         $.each(data, function(key, value){
             scores.push("<div id='"+key+"'>"+value+"</div>");
         });
-        alert("data.score1="+data.score1);
-        alert("scores.score1="+scores.score1);
+        var score1 = data.score1,
+            score2 = data.score2,
+            score3 = data.score3,
+            score4 = data.score4,
+            score5 = data.score5,
+            name1 = data.name1,
+            name2 = data.name2,
+            name3 = data.name3,
+            name4 = data.name4,
+            name5 = data.name5;
 
-        // for (var i = 0; i<scores.length; i++){
-        //     document.getElementById("score"+(i+1)).innerHTML=scores[i].toString();
-        //     document.getElementById("name"+(i+1)).innerHTML=names[i].toString();
-        // }
+        document.getElementById("score1").innerHTML=score1+"";
+        document.getElementById("name1").innerHTML=name1;
+        document.getElementById("score2").innerHTML=score2+"";
+        document.getElementById("name2").innerHTML=name2;
+        document.getElementById("score3").innerHTML=score3+"";
+        document.getElementById("name3").innerHTML=name3;
+        document.getElementById("score4").innerHTML=score4+"";
+        document.getElementById("name4").innerHTML=name4;
+        document.getElementById("score5").innerHTML=score5+"";
+        document.getElementById("name5").innerHTML=name5;
     });
 }
