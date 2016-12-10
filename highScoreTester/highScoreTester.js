@@ -1,6 +1,8 @@
 /**
  * Created by murphyjp on 12/8/2016.
  */
+
+
 function sendScores() {
     var score1 = parseInt(document.getElementById("score1").innerHTML),
         score2 = parseInt(document.getElementById("score2").innerHTML),
@@ -13,19 +15,27 @@ function sendScores() {
         name4 = (document.getElementById("name4").innerHTML),
         name5 = (document.getElementById("name5").innerHTML);
 
-    var data = "<highscores><n1><score>"+score1+"</score><name>"+name1+"</name></n1>"+
-            "<n2><score>"+score2+"</score><name>"+name2+"</name></n2>"+
-            "<n3><score>"+score3+"</score><name>"+name3+"</name></n3>"+
-            "<n4><score>"+score4+"</score><name>"+name4+"</name></n4>"+
-            "<n5><score>"+score5+"</score><name>"+name5+"</name></n5></highscores>";
+    var data = {
+        score1: score1,
+        score2: score2,
+        score3: score3,
+        score4: score4,
+        score5: score5,
+        name1: name1,
+        name2: name2,
+        name3: name3,
+        name4: name4,
+        name5: name5
+    };
 
-    alert("I am about to POST something");
+    alert("I am about to POST this: "+data.toString());
 
+    var json = JSON.stringify(data);
     var xhr = new XMLHttpRequest();
-    var url = "scores.xml";
+    var url = "scores.json";
     xhr.open("POST", url, true);
-    xhr.setRequestHeader('Content-type', 'text/xml');
-    xhr.setRequestHeader('Content-length', data.length+"");
+    xhr.setRequestHeader('Content-type', 'application/json');
+    xhr.setRequestHeader('Content-length', json.length+"");
     xhr.setRequestHeader('Connection', 'close');
 
     xhr.onreadystatechange = function() {//Call a function when the state changes.
@@ -34,25 +44,18 @@ function sendScores() {
         }
     };
 
-    xhr.send(data);
+    xhr.send(json);
 }
 
 function getScores(){
-    var xhr = new XMLHttpRequest();
-    var url = "scores.xml";
-
-    xhr.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            var xml = this.responseXML;
-            var scores = xml.getElementsByTagName("score");
-            var names = xml.getElementsByTagName("name");
-            for (var i = 0; i<scores.length; i++){
-                document.getElementById("score"+(i+1)).innerHTML=scores[i].toString();
-                document.getElementById("name"+(i+1)).innerHTML=names[i].toString();
-            }
-        }
-    };
-
-    xhr.open('GET', url, true);
-    xhr.send();
+    var url = "scores.json";
+    $.getJSON(url,function(data){
+        alert(data);
+        var json = JSON.parse(data);
+        alert(json);
+        // for (var i = 0; i<scores.length; i++){
+        //     document.getElementById("score"+(i+1)).innerHTML=scores[i].toString();
+        //     document.getElementById("name"+(i+1)).innerHTML=names[i].toString();
+        // }
+    });
 }
