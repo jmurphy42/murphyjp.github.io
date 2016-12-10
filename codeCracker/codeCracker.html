@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Code Cracker</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <script src="codeCracker.js"></script>
+    <link type="text/css" rel="stylesheet" href="../murphyjp.css" />
+    <link type="text/css" rel="stylesheet" href="codeCracker.css" />
+</head>
+<body onload="init()">
+<div id="home"><a href="../index.html">🏠</a></div>
+<h1>Code Cracker</h1>
+<div id="gameFrame">
+    <table>
+        <tr>
+            <td class="boxA box" id="ba0"></td>
+            <td class="boxA box" id="ba1"></td>
+            <td class="boxA box" id="ba2"></td>
+            <td class="boxA box" id="ba3"></td>
+            <td class="boxA box" id="ba4"></td>
+            <td class="boxA box" id="ba5"></td>
+            <td id="ba6"><div></div></td>
+        </tr>
+        <tr>
+            <td class="box" id="b150"></td>
+            <td class="box" id="b151"></td>
+            <td class="box" id="b152"></td>
+            <td class="box" id="b153"></td>
+            <td class="box" id="b154"></td>
+            <td class="box" id="b155"></td>
+            <td id="b156"><div class="boxR"></div></td>
+        </tr>
+        <tr>
+            <td class="box" id="b140"></td>
+            <td class="box" id="b141"></td>
+            <td class="box" id="b142"></td>
+            <td class="box" id="b143"></td>
+            <td class="box" id="b144"></td>
+            <td class="box" id="b145"></td>
+            <td id="b146"><div class="boxR"></div></td>
+        </tr>
+        <tr>
+            <td class="box" id="b130"></td>
+            <td class="box" id="b131"></td>
+            <td class="box" id="b132"></td>
+            <td class="box" id="b133"></td>
+            <td class="box" id="b134"></td>
+            <td class="box" id="b135"></td>
+            <td id="b136"><div class="boxR"></div></td>
+        </tr>
+        <tr>
+            <td class="box" id="b120"></td>
+            <td class="box" id="b121"></td>
+            <td class="box" id="b122"></td>
+            <td class="box" id="b123"></td>
+            <td class="box" id="b124"></td>
+            <td class="box" id="b125"></td>
+            <td id="b126"><div class="boxR"></div></td>
+        </tr>
+        <tr>
+            <td class="box" id="b110"></td>
+            <td class="box" id="b111"></td>
+            <td class="box" id="b112"></td>
+            <td class="box" id="b113"></td>
+            <td class="box" id="b114"></td>
+            <td class="box" id="b115"></td>
+            <td id="b116"><div class="boxR"></div></td>
+        </tr>
+        <tr>
+            <td class="box" id="b100"></td>
+            <td class="box" id="b101"></td>
+            <td class="box" id="b102"></td>
+            <td class="box" id="b103"></td>
+            <td class="box" id="b104"></td>
+            <td class="box" id="b105"></td>
+            <td id="b106"><div class="boxR"></div></td>
+        </tr>
+        <tr>
+            <td class="box" id="b90"></td>
+            <td class="box" id="b91"></td>
+            <td class="box" id="b92"></td>
+            <td class="box" id="b93"></td>
+            <td class="box" id="b94"></td>
+            <td class="box" id="b95"></td>
+            <td id="b96"><div class="boxR"></div></td>
+        </tr>
+        <tr>
+            <td class="box" id="b80"></td>
+            <td class="box" id="b81"></td>
+            <td class="box" id="b82"></td>
+            <td class="box" id="b83"></td>
+            <td class="box" id="b84"></td>
+            <td class="box" id="b85"></td>
+            <td id="b86"><div class="boxR"></div></td>
+        </tr>
+        <tr>
+            <td class="box" id="b70"></td>
+            <td class="box" id="b71"></td>
+            <td class="box" id="b72"></td>
+            <td class="box" id="b73"></td>
+            <td class="box" id="b74"></td>
+            <td class="box" id="b75"></td>
+            <td id="b76"><div class="boxR"></div></td>
+        </tr>
+        <tr>
+            <td class="box" id="b60"></td>
+            <td class="box" id="b61"></td>
+            <td class="box" id="b62"></td>
+            <td class="box" id="b63"></td>
+            <td class="box" id="b64"></td>
+            <td class="box" id="b65"></td>
+            <td id="b66"><div class="boxR"></div></td>
+        </tr>
+        <tr>
+            <td class="box" id="b50"></td>
+            <td class="box" id="b51"></td>
+            <td class="box" id="b52"></td>
+            <td class="box" id="b53"></td>
+            <td class="box" id="b54"></td>
+            <td class="box" id="b55"></td>
+            <td id="b56"><div class="boxR"></div></td>
+        </tr>
+        <tr>
+            <td class="box" id="b40"></td>
+            <td class="box" id="b41"></td>
+            <td class="box" id="b42"></td>
+            <td class="box" id="b43"></td>
+            <td class="box" id="b44"></td>
+            <td class="box" id="b45"></td>
+            <td id="b46"><div class="boxR"></div></td>
+        </tr>
+        <tr>
+            <td class="box" id="b30"></td>
+            <td class="box" id="b31"></td>
+            <td class="box" id="b32"></td>
+            <td class="box" id="b33"></td>
+            <td class="box" id="b34"></td>
+            <td class="box" id="b35"></td>
+            <td id="b36"><div class="boxR"></div></td>
+        </tr>
+        <tr>
+            <td class="box" id="b20"></td>
+            <td class="box" id="b21"></td>
+            <td class="box" id="b22"></td>
+            <td class="box" id="b23"></td>
+            <td class="box" id="b24"></td>
+            <td class="box" id="b25"></td>
+            <td id="b26"><div class="boxR"></div></td>
+        </tr>
+        <tr>
+            <td class="box" id="b10"></td>
+            <td class="box" id="b11"></td>
+            <td class="box" id="b12"></td>
+            <td class="box" id="b13"></td>
+            <td class="box" id="b14"></td>
+            <td class="box" id="b15"></td>
+            <td id="b16"><div class="boxR"></div></td>
+        </tr>
+        <tr><td id="sepD" colspan="1"><div id="separator"></div></td></tr>
+        <tr>
+            <td class="box" id="b00" onclick="changeColor(0)"></td>
+            <td class="box" id="b01" onclick="changeColor(1)"></td>
+            <td class="box" id="b02" onclick="changeColor(2)"></td>
+            <td class="box" id="b03" onclick="changeColor(3)"></td>
+            <td class="box" id="b04" onclick="changeColor(4)"></td>
+            <td class="box" id="b05" onclick="changeColor(5)"></td>
+            <td class="boxR" id="b06"><div></div></td>
+        </tr>
+    </table>
+    <div>
+        <div id="submit"><p class="buttonize" onclick="submitCode()">
+            Submit Code
+        </p></div>
+    </div>
+</div>
+<div id="data">
+    <h3>Settings</h3>
+    <table>
+        <tr>
+            <td class="settingsLabel">Number of Colors</td>
+            <td><input type="text" id="nColors" title="# Colors: 3-8" value="4" /></td>
+        </tr>
+        <tr>
+            <td class="settingsLabel">Number of Boxes</td>
+            <td><input type="text" id="nBoxes" title="# Boxes: 3-6" value="4" /></td>
+        </tr>
+        <tr>
+            <td><div id="reveal1" class="tooltip2" >
+                <span id="reveal2" class="tooltiptext2">Setting Saved.</span></div></td>
+            <td><div id="updateSettings">
+                <p class="buttonize" onclick="updateSettings()">
+                    Save Settings
+                </p>
+            </div></td>
+        </tr>
+    </table>
+    <h3>Instructions</h3>
+    <ul>
+        <li>Click the boxes to change their color.</li>
+        <li>Guess a color combination.</li>
+        <li>The computer will inform you how many boxes are exactly right
+            (right color in the right spot) or somewhat right
+            (right color in the wrong spot), but not <em>which</em> boxes.</li>
+        <li>Keep guessing combinations until you crack the code.</li>
+        <li>You have a maximum of 15 guesses.</li>
+        <li>Try to solve in the fewest guesses as possible!</li>
+    </ul>
+    <table>
+        <tr>
+            <td class="settingsLabel"></td>
+            <td><div id="restartGame">
+                <p class="buttonize" onclick="location.reload()">
+                    Restart Game
+                </p>
+            </div></td>
+        </tr>
+    </table>
+
+</div>
+
+<h2 id="msg">
+    Game over. Well done.
+</h2>
+</body>
+</html>

@@ -1,32 +1,75 @@
 body{
     background-color: gainsboro;
     color: #252735;
-    font-family: 'Open Sans', sans-serif;
-    width: 70%;
-    margin-left: 40px;
-    padding: 20px;
+    font-family: 'Montserrat', sans-serif;
 }
 h1{
     background-color: #252735;
     color: gainsboro;
     font-family: 'Montserrat', sans-serif;
     padding: 20px;
-    margin: 0;
+    margin-left: 83px;
+    height: 40px;
 }
 h2{
     background-color: #252735;
     color: gainsboro;
-    font-family: 'Montserrat', sans-serif;
+    font-weight: normal;
+    padding: 20px;
+    margin: 0;
+}
+h3{
+    clear: both;
+    border-bottom: 1px solid #252735;
+}
+h4{
+    background-color: #252735;
+    color: gainsboro;
     font-weight: normal;
     padding: 0 20px 20px;
     margin: 0;
 }
-h3{
-    font-family: 'Montserrat', sans-serif;
+h5{
     border-bottom: 2px solid #252735;
+}
+.error{
+    color: #9a2517;
+    font-size: smaller;
+}
+#home{
+    width: 40px;
+    height: 40px;
+    font-size: x-large;
+    font-weight: bolder;
+    text-align: center;
+    background-color: #252735;
+    color: gainsboro;
+    padding: 20px;
+    float: left;
 }
 #content{
     padding: 20px 0;
+}
+#gameFrame{
+     border: 3px solid #252735;
+     width: 500px;
+     height: 500px;
+     position: absolute;
+     left: 50px;
+     top: 150px;
+}
+#data{
+    position: absolute;
+    left: 600px;
+    top: 150px;
+    margin: 10px;
+}
+#msg{
+    display: none;
+    position: absolute;
+    text-align: center;
+    top: 330px;
+    left: 10px;
 }
 a{
     color: #904519;
@@ -37,4 +80,53 @@ a{
 a:hover{
     color: #9a2517;
     text-decoration: underline;
+}
+.buttonize{
+    padding: 5px;
+    border: 1px solid #252735;
+    float: right;
+    width: 100px;
+    cursor: pointer;
+    text-align: center;
+    font-size: small;
+}
+#restartGame{
+    position: absolute;
+    left: 50px;
+    top: 660px;
+}
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+.tooltip .tooltiptext {
+    font-size: x-small;
+    font-weight: 100;
+    opacity: 0;
+    width: 80px;
+    background-color: #252735;
+    color: gainsboro;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+    position: absolute;
+    -webkit-transition: opacity 1000ms;
+    -moz-transition: opacity 1000ms;
+    -o-transition: opacity 1000ms;
+    transition: opacity 1000ms;
+    z-index: 1;
+    top: -9px;
+    right: 108%;
+}
+.tooltip:hover .tooltiptext {
+    opacity: 100;
+}
+.tooltip .tooltiptext::after {
+    content: " ";
+    position: absolute;
+    top: 50%;
+    left: 100%; /* To the right of the tooltip */
+    margin-top: -5px;
+    border: 5px solid;
+    border-color: transparent transparent transparent #252735;
 }

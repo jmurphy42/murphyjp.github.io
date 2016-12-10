@@ -1,0 +1,80 @@
+.box{
+    width: 30px;
+    height: 15px;
+    text-align: center;
+    background-color: #8b8b8b;
+    display: none;
+    float: left;
+    border: 1px solid #252735;
+    margin: 3px;
+}
+.boxA{
+    background-color: #222222;
+}
+.boxR{
+    width: 50px;
+}
+#separator{
+    border-bottom: 1px solid #252735;
+}
+#msg{
+    left: 20px;
+    width: 350px;
+    top: 652px;
+}
+.settingsLabel{
+    width: 150px;
+}
+input{
+    width: 50px;
+    text-align: center;
+}
+.buttonize{
+    float: left;
+}
+#submit{
+    width: 120px;
+    float: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    margin-left: 24px;
+}
+#gameFrame{
+    padding: 0 50px;
+    width: 500px;
+}
+#restartGame{
+    position: relative;
+    top: 0;
+    left: 0;
+}
+.tooltip2 {
+    position: relative;
+    display: inline-block;
+}
+.tooltip2 .tooltiptext2 {
+    cursor: default;
+    font-size: x-small;
+    font-weight: 100;
+    opacity: 0;
+    width: 100px;
+    background-color: #252735;
+    color: gainsboro;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+    position: absolute;
+    -webkit-transition: opacity 1500ms;
+    -moz-transition: opacity 1500ms;
+    -o-transition: opacity 1500ms;
+    transition: opacity 1500ms;
+    z-index: 1;
+    top: -15px;
+    left: 40px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
