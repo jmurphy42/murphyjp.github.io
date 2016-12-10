@@ -14,6 +14,9 @@
 .boxR{
     width: 50px;
 }
+.lil{
+    font-size: smaller;
+}
 #separator{
     border-bottom: 1px solid #252735;
 }
@@ -23,7 +26,8 @@
     top: 652px;
 }
 .settingsLabel{
-    width: 150px;
+    width: 200px;
+    height: 25px;
 }
 input{
     width: 50px;
