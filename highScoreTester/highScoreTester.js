@@ -49,10 +49,14 @@ function sendScores() {
 
 function getScores(){
     var url = "scores.json";
+    var scores = [];
     $.getJSON(url,function(data){
-        alert(data);
-        var json = JSON.parse(data);
-        alert(json);
+        $.each(data, function(key, value){
+            scores.push("<div id='"+key+"'>"+value+"</div>");
+        });
+        alert("data.score1="+data.score1);
+        alert("scores.score1="+scores.score1);
+
         // for (var i = 0; i<scores.length; i++){
         //     document.getElementById("score"+(i+1)).innerHTML=scores[i].toString();
         //     document.getElementById("name"+(i+1)).innerHTML=names[i].toString();
