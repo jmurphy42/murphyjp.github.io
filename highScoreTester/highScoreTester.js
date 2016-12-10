@@ -29,19 +29,9 @@ function sendScores() {
     };
 
     alert("I am about to POST this: "+data.toString());
-    var url = "scores.json";
-    $(url).find("score1").data(score1);
-    $(url).find("score2").data(score2);
-    $(url).find("score3").data(score3);
-    $(url).find("score4").data(score4);
-    $(url).find("score5").data(score5);
-    $(url).find("name1").data(name1);
-    $(url).find("name2").data(name2);
-    $(url).find("name3").data(name3);
-    $(url).find("name4").data(name4);
-    $(url).find("name5").data(name5);
+    // var url = "scores.json";
 
-
+    //nodejs to write stuff?
 }
 
 function getScores(){
