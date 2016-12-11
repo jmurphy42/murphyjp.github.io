@@ -14,6 +14,53 @@
 .boxR{
     width: 50px;
 }
+#c0{
+    background-color: #8b8b8b;
+}
+#c1{
+    background-color: #9a2517;
+}
+#c2{
+    background-color: #217225;
+}
+#c3{
+    background-color: #412944;
+}
+#c4{
+    background-color: #904519;
+}
+#c5{
+    background-color: #1f4d78;
+}
+#c6{
+    background-color: #7a8824;
+}
+#c7{
+    background-color: #f0f8ff;
+}
+#cSeparator{
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    background-color: transparent;
+    border: transparent;
+}
+.boxC{
+    width: 20px;
+    display: inline-block;
+    opacity: 0;
+    margin: 0;
+
+    -webkit-transition: opacity 500ms;
+    -moz-transition: opacity 500ms;
+    -o-transition: opacity 500ms;
+    transition: opacity 500ms;
+}
+#options{
+    width: 40px;
+    position: absolute;
+}
+
 .lil{
     font-size: smaller;
 }
@@ -32,6 +79,11 @@
 input{
     width: 50px;
     text-align: center;
+}
+.radio{
+    width: 20px;
+    margin: 0;
+    padding: 0;
 }
 .buttonize{
     float: left;

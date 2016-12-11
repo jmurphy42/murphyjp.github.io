@@ -7,10 +7,12 @@ var numColors = 4;
 var status = 1;
 var boxColors = [0,0,0,0,0,0];
 var codeColors = [0,0,0,0,0,0];
+var currentBox = 0;
 var exact = 0;
 var almost = 0;
 var colors = ["#8b8b8b", "#9a2517", "#217225", "#412944",
     "#904519", "#1f4d78", "#7a8824", "#f0f8ff"];
+var colorSelectType = 0; //0 = toggle, 1 = menu
 var exactChar = "●";
 var almostChar = "o";
 var emptyChar = "";
@@ -46,22 +48,64 @@ function init(){
 }
 
 function setCode(){
+    var i;
+    for (i = 0; i<6; i++){
+        document.getElementById("ba"+i).style.backgroundColor = "#222222";
+    }
+
     var random;
-    for (var i = 0; i<6; i++) {
+    for (i = 0; i<6; i++) {
         random = parseInt(Math.random() * numColors);
         codeColors[i] = random;
     }
 }
 
-function changeColor(box){
+function displayColorOptions(box){
+    if (status>0) {
+        if(colorSelectType==0) {
+            toggleColorOption(box);
+        }else{
+            currentBox = box;
+            var boxFrame = document.getElementById("b0" + box);
+            var gameFrame = document.getElementById("gameFrame");
+            var top = parseInt(boxFrame.offsetTop) + parseInt(gameFrame.offsetTop);
+            var left = parseInt(boxFrame.offsetLeft) + parseInt(gameFrame.offsetLeft);
+            var optionsWindow = document.getElementById("options");
+            optionsWindow.style.top = (top + 16) + "px";
+            optionsWindow.style.left = (left + 60) + "px";
+            document.getElementById("cSeparator").style.opacity = 100;
+            for (var i = 0; i < numColors; i++) {
+                document.getElementById("c" + i).style.opacity = 100;
+            }
+        }
+    }
+}
+
+function hideColorOptions(){
+    document.getElementById("cSeparator").style.opacity = 0;
+    for (var i = 0; i<8; i++){
+        document.getElementById("c" + i).style.opacity = 0;
+    }
+}
+
+function toggleColorOption(box){
+    boxColors[box]++;
+    if(boxColors[box]>=numColors){ //sanity check
+        boxColors[box]=0;
+    }
+    document.getElementById("b0"+box).style.backgroundColor = colors[boxColors[box]];
+}
+
+function changeColor(colorChoice){
+    hideColorOptions();
     if (status > 0){
-        boxColors[box]++;
-        if(boxColors[box]>=numColors){
-            boxColors[box]=0;
+        var selectedColor = colors[colorChoice];
+
+        boxColors[currentBox] = colorChoice;
+        if(boxColors[currentBox]>=numColors){ //sanity check
+            boxColors[currentBox]=0;
         }
-        for (var i = 0; i<numBoxes; i++){
-            document.getElementById("b0"+i).style.backgroundColor = colors[boxColors[i]];
-        }
+        document.getElementById("b0"+currentBox).style.backgroundColor = selectedColor;
     }
 }
 
@@ -75,6 +119,7 @@ function printCode(){
 }
 
 function submitCode(){
+    hideColorOptions();
     if (status > 0) {
         printCode();
 
@@ -167,6 +212,14 @@ function updateSettings(){
     input = parseInt(document.getElementById("nBoxes").value);
     if (!isNaN(input) && input >= 3 && input <= 6) {
         numBoxes = input;
+    }
+
+    var radio = document.getElementById("colorPickerToggle");
+    if (radio.checked){
+        colorSelectType = 0;
+    }else{
+        colorSelectType = 1;
+        document.getElementById("colorPickerMenu").checked = true;
     }
 
     document.getElementById("nColors").value = numColors;

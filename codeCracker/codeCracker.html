@@ -159,12 +159,12 @@
         </tr>
         <tr><td id="sepD" colspan="1"><div id="separator"></div></td></tr>
         <tr>
-            <td class="box" id="b00" onclick="changeColor(0)"></td>
-            <td class="box" id="b01" onclick="changeColor(1)"></td>
-            <td class="box" id="b02" onclick="changeColor(2)"></td>
-            <td class="box" id="b03" onclick="changeColor(3)"></td>
-            <td class="box" id="b04" onclick="changeColor(4)"></td>
-            <td class="box" id="b05" onclick="changeColor(5)"></td>
+            <td class="box" id="b00" onclick="displayColorOptions(0)"></td>
+            <td class="box" id="b01" onclick="displayColorOptions(1)"></td>
+            <td class="box" id="b02" onclick="displayColorOptions(2)"></td>
+            <td class="box" id="b03" onclick="displayColorOptions(3)"></td>
+            <td class="box" id="b04" onclick="displayColorOptions(4)"></td>
+            <td class="box" id="b05" onclick="displayColorOptions(5)"></td>
             <td class="boxR" id="b06"><div></div></td>
         </tr>
     </table>
@@ -173,6 +173,17 @@
             Submit Code
         </p></div>
     </div>
+</div>
+<div id="options">
+    <div class="box boxC" id="cSeparator">▴</div>
+    <div class="box boxC" id="c0" onclick="changeColor(0)"></div>
+    <div class="box boxC" id="c1" onclick="changeColor(1)"></div>
+    <div class="box boxC" id="c2" onclick="changeColor(2)"></div>
+    <div class="box boxC" id="c3" onclick="changeColor(3)"></div>
+    <div class="box boxC" id="c4" onclick="changeColor(4)"></div>
+    <div class="box boxC" id="c5" onclick="changeColor(5)"></div>
+    <div class="box boxC" id="c6" onclick="changeColor(6)"></div>
+    <div class="box boxC" id="c7" onclick="changeColor(7)"></div>
 </div>
 <div id="data">
     <h3>Settings</h3>
@@ -184,6 +195,13 @@
         <tr>
             <td class="settingsLabel">Number of Boxes <span class="lil">[3-6]</span></td>
             <td><input type="text" id="nBoxes" title="# Boxes: 3-6" value="4" /></td>
+        </tr>
+        <tr>
+            <td class="settingsLabel">Color Picker Type</td>
+            <td>
+                <input type="radio" class="radio" id="colorPickerToggle" name="cp" title="Color Picker Type" value="0" checked />Toggle &nbsp;
+                <input type="radio" class="radio" id="colorPickerMenu" name="cp" title="Color Picker Type" value="1" />Menu
+            </td>
         </tr>
         <tr>
             <td><div id="reveal1" class="tooltip2" >
