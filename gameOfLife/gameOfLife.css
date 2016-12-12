@@ -19,10 +19,25 @@
     -ms-user-select: none;
     user-select: none;
 }
+#cellReport{
+    position: absolute;
+    top: 755px;
+    left: 10px;
+}
 #data{
     left: 675px;
     top: 110px;
     width: 520px;
+}
+#report{
+    width: 250px;
+    border: 1px solid #252735;
+    padding: 10px;
+}
+.stat{
+    margin: 0;
+    border: 0;
+    font-size: medium;
 }
 #restartGame{
     position: relative;

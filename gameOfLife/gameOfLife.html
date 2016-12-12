@@ -16,9 +16,13 @@
         <canvas id="canvas" width="640" height="640">This game is not supported by your browser.</canvas>
     </div>
 </div>
+<div id="cellReport" class="lil"></div>
 
 <div id="data">
-    <h3 id="report">Cell: (0,0)</h3>
+    <div id="report"><h3 class='stat'>Generations: </h3>
+        <h3 class='stat'>Live Cells: </h3>
+        <h3 class='stat'>Active Cells: </h3>
+    </div>
     <h3>Instructions</h3>
     <ul>
         <li>Click the grid to create a beginning world.</li>
@@ -33,7 +37,7 @@
         <li>Try a variety of starting configurations to see the variety of lives you can create.</li>
     </ul>
     <h3>Settings</h3>
-    Speed: <input type="text" id="speed" title="Speed" value="100" onblur="verifySpeed()" />
+    Generation Length: <input type="text" id="speed" title="Speed" value="100" onblur="verifySpeed()" />
     ms &nbsp; &nbsp; <span class="lil">[20-1000]</span>
 
     <div id="runGame">
