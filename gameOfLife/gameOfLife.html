@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Game of Life</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <script src="gameOfLife.js"></script>
+    <link type="text/css" rel="stylesheet" href="../murphyjp.css" />
+    <link type="text/css" rel="stylesheet" href="gameOfLife.css" />
+</head>
+<body onload="init()">
+<div id="home"><a href="../index.html">🏠</a></div>
+<h1>Game of Life</h1>
+<div id="outerFrame">
+    <div id="gameFrame">
+        <canvas id="canvas" width="640" height="640">This game is not supported by your browser.</canvas>
+    </div>
+</div>
+
+<div id="data">
+    <h3 id="report">Cell: (0,0)</h3>
+    <h3>Instructions</h3>
+    <ul>
+        <li>Click the grid to create a beginning world.</li>
+        <li>Click 'RUN' to start the game of life.</li>
+        <li>Cells will become alive, persist, and die, as determined by this set of rules:</li>
+        <ul>
+            <li>Living cells touching 0-1 cells are lonely. They die.</li>
+            <li>Living cells touching 2-3 cells are happy. They persist.</li>
+            <li>Living cells touching 4+ cells are crowded. They die.</li>
+            <li>Other cells touching 3 cells are born.</li>
+        </ul>
+        <li>Try a variety of starting configurations to see the variety of lives you can create.</li>
+    </ul>
+    <h3>Settings</h3>
+    Speed: <input type="text" id="speed" title="Speed" value="100" onblur="verifySpeed()" />
+    ms &nbsp; &nbsp; <span class="lil">[20-1000]</span>
+
+    <div id="runGame">
+        <p id="runButton" class="buttonize" onclick="runLooper()">
+            RUN
+        </p>
+    </div>
+    <div id="stopGame">
+        <p id="stopButton" class="buttonize" onclick="stopLooper()">
+            Stop
+        </p>
+    </div>
+    <div id="saveGame">
+        <p class="buttonize" onclick="saveWorld()">
+            Save World
+        </p>
+    </div>
+    <div id="restartGame">
+        <p class="buttonize" onclick="restoreWorld()">
+            Restore World
+        </p>
+    </div>
+</div>
+<h2 id="msg">
+    Game over. Well done.
+</h2>
+</body>
+</html>

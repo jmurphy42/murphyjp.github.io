@@ -1,0 +1,54 @@
+#gameFrame{
+    position: relative;
+    width: 640px;
+    height: 640px;
+    left: 0;
+    top: 0;
+}
+#outerFrame{
+    position: absolute;
+    width: 646px;
+    height: 645px;
+    left: 5px;
+    top: 105px;
+    border: 5px solid gainsboro;
+}
+#canvas{
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+#data{
+    left: 675px;
+    top: 110px;
+    width: 520px;
+}
+#restartGame{
+    position: relative;
+    left: 0;
+    top: 0;
+}
+.buttonize{
+    clear: both;
+    float: none;
+    margin: 10px 0;
+}
+#speed{
+    width: 50px;
+    font-size: large;
+    text-align: center;
+    margin: 0 0 20px 0;
+}
+#runButton{
+    background-color: #252735;
+    color: gainsboro;
+    font-size: x-large;
+    font-weight: bolder;
+}
+#stopButton{
+    background-color: #9a2517;
+    color: gainsboro;
+    font-size: large;
+    font-weight: bold;
+}

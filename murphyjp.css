@@ -81,6 +81,9 @@ a:hover{
     color: #9a2517;
     text-decoration: underline;
 }
+.lil{
+    font-size: smaller;
+}
 .buttonize{
     padding: 5px;
     border: 1px solid #252735;
@@ -89,6 +92,11 @@ a:hover{
     cursor: pointer;
     text-align: center;
     font-size: small;
+
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 #restartGame{
     position: absolute;
