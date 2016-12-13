@@ -45,6 +45,8 @@ function init(){
     document.getElementById("submit").style.marginLeft = ((((numBoxes)*42)-120)/2)+"px";
 
     setCode();
+
+    status = 1;
 }
 
 function setCode(){
