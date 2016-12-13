@@ -203,7 +203,7 @@ function setWin(){
     winFrame.style.display = "block";
 }
 
-function updateSettings(){
+function updateSettings(reveal){
     var input = parseInt(document.getElementById("nColors").value);
     if (!isNaN(input) && input >= 3 && input <= 8){
         numColors = input;
@@ -225,7 +225,9 @@ function updateSettings(){
     document.getElementById("nColors").value = numColors;
     document.getElementById("nBoxes").value = numBoxes;
 
-    revealTT2();
+    if (reveal==1) {
+        revealTT2();
+    }
 
     init();
 }
