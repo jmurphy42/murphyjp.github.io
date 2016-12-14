@@ -4,6 +4,7 @@
 var currentSquare;
 var previousSquare;
 var status = 0;
+var instructions = true;
 
 var gridData = [];
 var newGridData = [];
@@ -13,17 +14,23 @@ var history1 = [],
     history4 = [],
     history5 = [];
 
-var worldSave = [];
+var worldSave1 = [];
+var worldSave2 = [];
+var worldSave3 = [];
 
 var delay = 100;
 var changedCells = 0;
 var generations = 0;
 var looper;
 
-function run() {
+function run(step) {
 
     clearInterval(looper);
-    looper = setInterval(run, delay);
+    if (!step) {
+        looper = setInterval(run, delay);
+    }else{
+        stopLooper();
+    }
 
     for (var dx = 0; dx < 80; dx++) {      //for all x rows
         for (var dy = 0; dy < 80; dy++) {  //for all y cells in x row
@@ -179,7 +186,6 @@ function run() {
 
 function runLooper() {
     if (status == 0) {
-        generations = 0;
         var frame = document.getElementById("gameFrame");
         frame.style.borderColor = "#9a2517";
         frame = document.getElementById("outerFrame");
@@ -201,13 +207,20 @@ function stopLooper() {
     }
 }
 
-function saveWorld() {
+function saveWorld(worldNum) {
     stopLooper();
     for (var x = 0; x < 80; x++) {
         for (var y = 0; y < 80; y++) {
-            worldSave[x][y] = gridData[x][y];
+            if(worldNum==1) {
+                worldSave1[x][y] = gridData[x][y];
+            }else if (worldNum==2){
+                worldSave2[x][y] = gridData[x][y];
+            }else{
+                worldSave3[x][y] = gridData[x][y];
+            }
         }
     }
+    createThumbnail(worldNum);
 }
 
 function loadFromFile(fileName){
@@ -235,11 +248,12 @@ function readFile(text){
 
 function paintNewWorld(){
     paintNew();
-    fillGrid(history1, 1);
+    fillGrid(history1, 1); //reset history
     fillGrid(history2, 2);
     fillGrid(history3, 3);
     fillGrid(history4, 4);
     fillGrid(history5, 5);
+    generations = 0;
 
     function paintNew() {
         var canvas = document.getElementById('canvas');
@@ -268,15 +282,27 @@ function paintNewWorld(){
     }
 }
 
-function restoreWorld() {
+function restoreWorld(worldNum) {
     stopLooper();
 
     for (var x = 0; x < 80; x++) {
         for (var y = 0; y < 80; y++) {
-            gridData[x][y] = worldSave[x][y];
+            if (worldNum==1) {
+                gridData[x][y] = worldSave1[x][y];
+            }else if (worldNum==2) {
+                gridData[x][y] = worldSave2[x][y];
+            }else{
+                gridData[x][y] = worldSave3[x][y];
+            }
         }
     }
 
+    paintNewWorld();
+}
+
+function clearWorld(){
+    stopLooper();
+    fillGrid(gridData, 0);
     paintNewWorld();
 }
 
@@ -286,6 +312,17 @@ function fillGrid(grid, value){
             grid[x][y] = value;
         }
     }
+}
+
+function updateSlider(value){
+    document.getElementById("speedReport").innerHTML = value+"";
+    delay = value;
+}
+
+function createThumbnail(worldNum){
+    var canvas = document.getElementById('canvas');
+    var thumbnail = canvas.toDataURL("image/png");
+    document.getElementById("world"+worldNum+"img").setAttribute('src',thumbnail);
 }
 
 function recordHistory() {
@@ -316,13 +353,17 @@ function getGridCount(grid) {
     return sum;
 }
 
-function verifySpeed() {
-    var speedInput = document.getElementById("speed");
-    var speedValue = parseInt(speedInput.value);
-    if (isNaN(speedValue) || speedValue < 20 || speedValue > 1000) {
-        speedInput.value = delay + "";
-    } else {
-        delay = speedValue;
+function toggleInstructions(){
+    var inst = document.getElementById("instructions");
+    var instHdr = document.getElementById("instructionsHeader");
+    if (instructions){
+        inst.style.display = 'none';
+        instHdr.innerHTML = "Instructions ▷";
+        instructions = false;
+    }else{
+        inst.style.display = 'block';
+        instHdr.innerHTML = "Instructions ▽";
+        instructions = true;
     }
 }
 
@@ -337,6 +378,7 @@ function init() {
     addMouseOver();
     addMouseClick();
     addMouseOut();
+    toggleInstructions();
 
     function setUpGridData() {
         //Create a gridData 80x80 array of arrays to hold cell 1/0 status.
@@ -349,6 +391,8 @@ function init() {
             var yArray6 = []; //create a new yArray.
             var yArray7 = []; //create a new yArray.
             var yArray8 = []; //create a new yArray.
+            var yArray9 = []; //create a new yArray.
+            var yArray10 = []; //create a new yArray.
             for (var y = 0; y < 80; y++) {
                 yArray1.push(0); //give a yArray 80 cells.
                 yArray2.push(0); //give a yArray 80 cells.
@@ -358,15 +402,19 @@ function init() {
                 yArray6.push(3); //give a yArray 80 cells.
                 yArray7.push(4); //give a yArray 80 cells.
                 yArray8.push(5); //give a yArray 80 cells.
+                yArray9.push(5); //give a yArray 80 cells.
+                yArray10.push(5); //give a yArray 80 cells.
             }
             gridData.push(yArray1); //add the new yArray to grid 80 times.
             newGridData.push(yArray2); //add the new yArray to grid 80 times.
-            worldSave.push(yArray3); //add the new yArray to grid 80 times.
-            history1.push(yArray4); //add the new yArray to grid 80 times.
-            history2.push(yArray5); //add the new yArray to grid 80 times.
-            history3.push(yArray6); //add the new yArray to grid 80 times.
-            history4.push(yArray7); //add the new yArray to grid 80 times.
-            history5.push(yArray8); //add the new yArray to grid 80 times.
+            history1.push(yArray3); //add the new yArray to grid 80 times.
+            history2.push(yArray4); //add the new yArray to grid 80 times.
+            history3.push(yArray5); //add the new yArray to grid 80 times.
+            history4.push(yArray6); //add the new yArray to grid 80 times.
+            history5.push(yArray7); //add the new yArray to grid 80 times.
+            worldSave1.push(yArray8); //add the new yArray to grid 80 times.
+            worldSave2.push(yArray9); //add the new yArray to grid 80 times.
+            worldSave3.push(yArray10); //add the new yArray to grid 80 times.
         }
         //the structure is: gridData[x][y] = cell (x,y)
         //                  gridData[0][0] = top left cell (0,0)
@@ -451,7 +499,6 @@ function init() {
                 context.fillRect(px, py, 7, 7);
             }
         }
-
     }
 
     function addMouseOut() {

@@ -24,13 +24,21 @@
     top: 755px;
     left: 10px;
 }
+#genLen{
+    width: 220px;
+    color: red;
+}
+.ui-slider{
+    width: 250px;
+    color: #222222;
+}
 #data{
     left: 675px;
     top: 110px;
     width: 520px;
 }
 #report{
-    width: 250px;
+    width: 180px;
     border: 1px solid #252735;
     padding: 10px;
 }
@@ -39,15 +47,13 @@
     border: 0;
     font-size: medium;
 }
-#restartGame{
-    position: relative;
-    left: 0;
-    top: 0;
-}
 .buttonize{
-    clear: both;
-    float: none;
-    margin: 0;
+    margin: 10px 0;
+    width: 110px;
+    background-color: #cccccc;
+}
+.saveGame, .restoreGame{
+    margin: 5px auto;
 }
 #speed{
     width: 50px;
@@ -55,18 +61,38 @@
     text-align: center;
     margin: 0;
 }
-#runButton{
+#runButton, #stepButton{
+    float: left;
     background-color: #252735;
+    height: 35px;
     color: gainsboro;
     font-size: x-large;
     font-weight: bolder;
+    margin: 0 10px 0 0;
+}
+#stepButton {
+    width: 20px;
+    font-weight: bold;
 }
 #stopButton{
+    float: none;
     background-color: #9a2517;
     color: gainsboro;
     font-size: large;
     font-weight: bold;
 }
+#clearButton{
+    float: none;
+}
 #settingTable td{
-    padding: 8px 0;
+    padding: 3px;
+}
+.worldimg{
+    width: 120px;
+    height: 120px;
+    border: 1px solid #252735;
+    margin: 10px 0 0 0;
+}
+#instructionsHeader{
+    cursor: pointer;
 }

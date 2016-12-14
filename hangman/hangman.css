@@ -1,0 +1,132 @@
+body {
+    /* default font and background for everything */
+    background-color: grey;
+    font-family: Arial, sans-serif;
+}
+.alphabet {
+    /* layout for the alphabet table */
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    border: solid;
+    background-color: black;
+    color: white;
+    font-size:48px;
+    width: 500px;
+    margin: 0;
+    padding: 0;
+}
+.alphabet td {
+    /* size/alignment for individual letters in the alphabet */
+    width:15%;
+    text-align: center;
+}
+.word {
+    /* layout for the hidden word */
+    background-color: darkslategrey;
+    color: lightblue;
+    position: absolute;
+    font-size:48px;
+    top: 450px;
+    left: 10px;
+    width: 500px;
+    border: solid;
+    margin: 0;
+    padding: 0;
+}
+.word td {
+    /* size/alignment for the individual letters in the word */
+    width:15%;
+    text-align: center;
+    opacity: 0.1;      /* change this value to hide the word!!! */
+}
+#win {
+    /* "You win" message */
+    position: absolute;
+    font-size:72px;
+    left: 150px;
+    top: 250px;
+    color: green;
+    visibility: hidden;
+}
+#fail {
+    /* "You lose" message */
+    position: absolute;
+    font-size:72px;
+    color: red;
+    left: 150px;
+    top:250px;
+    visibility: hidden;
+}
+#reset {
+    /* Reset button */
+    font-size:24px;
+    position: absolute;
+    left: 10px;
+    top: 550px;
+    width:500px;
+    height:50px;
+}
+div.image {
+    /* div containing hangman image and hiding divs*/
+    position: absolute;
+    top: 10px;
+    left: 520px;
+    border: solid;
+    background-color: grey;
+    width:400px;
+    height:600px;
+    margin: 0;
+    padding: 0;
+}
+div.image img.image {
+    /* hangman image */
+    position:absolute;
+    width:100%;
+    height:auto;
+    z-index: 1;
+}
+div.image div {
+    /* divs that hide the hangman image */
+    position: absolute;
+    background-color: white;
+    z-index: 2;
+    opacity: 1;
+}
+div.image div#b1 {
+    left: 2%;
+    top: 86%;
+    width:36%;
+    height:10%;
+}
+div.image div#b2 {
+    left: 17%;
+    top: 16%;
+    width:5%;
+    height:70%;
+}
+div.image div#b3 {
+    left: 19%;
+    top: 15%;
+    width:51%;
+    height:2%;
+}
+div.image div#b4 {
+    left: 65%;
+    top: 16%;
+    width:5%;
+    height:15%;
+}
+div.image div#b5 {
+    left: 50%;
+    top: 30%;
+    width:38%;
+    height:55%;
+}
+div.image div#b6 {
+    left: 63%;
+    top: 34%;
+    width:11%;
+    height:9%;
+}
+

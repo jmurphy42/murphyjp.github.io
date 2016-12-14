@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <!-- The title changes with each win or loss -->
+    <title>Jason Murphy W:0 L:0</title>
+    <link rel="stylesheet" type="text/css" href="hangman.css">
+    <script src="jquery-3.1.1.js"></script>
+    <!-- All game logic goes in this script file -->
+    <script src="hangman.js"></script>
+</head>
+
+<body>
+
+<!-- This table contains the letters of the alphabet.
+The contents of this table are static, but the styling of individual characters
+changes during game play to indicate when the mouse cursor passes over a letter,
+letters that have been correctly-guessed, and letters that have been incorrectly-guessed. -->
+<table class="alphabet">
+    <tr>
+        <td>a</td>  <td>b</td>  <td>c</td>  <td>d</td>  <td>e</td>  <td>f</td>
+    </tr>
+    <tr>
+        <td>g</td>  <td>h</td>  <td>i</td>  <td>j</td>  <td>k</td>  <td>l</td>
+    </tr>
+    <tr>
+        <td>m</td>  <td>n</td>  <td>o</td>  <td>p</td>  <td>q</td>  <td>r</td>
+    </tr>
+    <tr>
+        <td>s</td>  <td>t</td>  <td>u</td>  <td>v</td>  <td>w</td>  <td>x</td>
+    </tr>
+    <tr>
+        <td>y</td>  <td>z</td>
+    </tr>
+</table>
+
+<!-- The image below represents the hangman. The
+sub-divs accompanying the image are used to hide or expose the various parts
+of the hangman image as the game progresses. The divs, initially opaque,
+fade out as incorrect guesses are made, each time exposing more of the hangman image.-->
+<div class="image">
+    <img class="image" src="hangman.jpg" alt="hangman image">
+    <div id="b1"></div>
+    <div id="b2"></div>
+    <div id="b3"></div>
+    <div id="b4"></div>
+    <div id="b5"></div>
+    <div id="b6"></div>
+</div>
+
+<!-- This table contains the letters of the 6-letter word being guessed.
+The table elements must be dynamically populated during game play when the
+correct letters are guessed by the user. -->
+<table class="word">
+    <tr>
+        <td>?</td>  <td>?</td>  <td>?</td>  <td>?</td>  <td>?</td>  <td>?</td>
+    </tr>
+</table>
+
+<!-- Reset button - used to restart the game. -->
+<input id="reset" type="button" value="Reset" />
+
+<!-- One of the following messages must appear at the end of the game,
+and continue to blink until the Reset button is pressed -->
+<p id="win">You won!</p>
+<p id="fail">You lost!</p>
+
+</body>
+</html>
+		
+		
