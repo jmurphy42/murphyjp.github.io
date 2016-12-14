@@ -210,15 +210,30 @@ function saveWorld() {
     }
 }
 
-function restoreWorld() {
-    stopLooper();
+function loadFromFile(fileName){
+    var client = new XMLHttpRequest();
+    try {
+        client.open('GET', fileName);
+        client.onreadystatechange = function () {
+            var text = client.responseText;
+            readFile(text);
+        };
+        client.send();
+    }catch(IOException){
+        alert("The file name supplied was not found.");
+    }
+}
 
-    for (var x = 0; x < 80; x++) {
-        for (var y = 0; y < 80; y++) {
-            gridData[x][y] = worldSave[x][y];
+function readFile(text){
+    for (var y = 0; y < 80; y++) {
+        for (var x = 0; x < 80; x++) {
+            gridData[x][y] = parseInt(text.charAt(x+(y*80)));
         }
     }
+    paintNewWorld();
+}
 
+function paintNewWorld(){
     paintNew();
     fillGrid(history1, 1);
     fillGrid(history2, 2);
@@ -251,6 +266,18 @@ function restoreWorld() {
             context.fillRect(x, y, 7, 7);
         }
     }
+}
+
+function restoreWorld() {
+    stopLooper();
+
+    for (var x = 0; x < 80; x++) {
+        for (var y = 0; y < 80; y++) {
+            gridData[x][y] = worldSave[x][y];
+        }
+    }
+
+    paintNewWorld();
 }
 
 function fillGrid(grid, value){
