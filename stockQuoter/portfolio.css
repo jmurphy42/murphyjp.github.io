@@ -1,0 +1,125 @@
+.container-fluid{
+    min-width: 1000px;
+}
+#warning{
+    display: none;
+    color: #9a2517;
+    margin: 0 200px;
+    font-weight: bolder;
+    border: 1px solid #9a2517;
+    padding: 10px;
+}
+h1{
+    font-family: 'Slabo 27px', serif;
+    padding: 15px;
+    background-color: #1c4f9a;
+    color: beige;
+}
+h4{
+    font-family: 'Nunito Sans', sans-serif;
+    font-style: italic;
+    color: #1c4f9a;
+}
+#stockForm{
+    margin: 50px 0;
+}
+body{
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: bold;
+}
+.stockData{
+    height: 44px;
+    display: none;
+    margin: 0;
+}
+.stockData div{
+    border: 1px solid #8b8b8b;
+    text-align: center;
+    padding: 0;
+    height: 100%;
+}
+#stockHeader{
+    height: 22px;
+    background-color: #f0f0f0;
+}
+#stock2, #stock4, #stock6, #stock8, #stock10,
+#stock12, #stock14, #stock16, #stock18, #stock20{
+    background-color: #f0f0f0;
+}
+.symbol{
+    color: #1c4f9a;
+}
+.imgLogo{
+    height: 40px;
+    width: 40px;
+}
+.imgInfo{
+    height: 14px;
+    width: 14px;
+}
+#timestamp{
+    font-family: 'Slabo 27px', serif;
+    font-size: smaller;
+    color: #1c4f9a;
+    display: none;
+    margin: 0 25px;
+}
+#footer{
+    font-family: 'Slabo 27px', serif;
+    font-size: smaller;
+    font-style: italic;
+    color: #1c4f9a;
+    padding: 50px;
+    margin: 50px;
+    text-align: center;
+}
+
+/*Toggle switch css*/
+.switch{
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+.switch input { display: none; }
+.slider{
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    border-radius: 34px;
+    background-color: #cccccc;
+    -webkit-transition: 300ms;
+    -moz-transition: 300ms;
+    -o-transition: 300ms;
+    transition: 300ms;
+}
+.slider:before{
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    border-radius: 50%;
+    background-color: white;
+    -webkit-transition: 300ms;
+    -moz-transition: 300ms;
+    -o-transition: 300ms;
+    transition: 300ms;
+}
+input:checked + .slider {
+    background-color: #1c4f9a;
+}
+input:focus + .slider {
+    box-shadow: 0 0 1px #1c4f9a;
+}
+input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -moz-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    -o-transform: translateX(26px);
+    transform: translateX(26px);
+}

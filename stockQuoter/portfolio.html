@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Stock Quoter</title>
+
+    <!-- Bootstrap -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- my CSS -->
+    <link rel="stylesheet" href="portfolio.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans|Slabo+27px" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div class="container-fluid">
+    <div class="col-md-12 col-lg-12 col-sm-12">
+        <div class="row">
+            <h1>Stock Quoter</h1>
+            <h4>Get stock data using YQL, Yahoo's Finance API</h4>
+        </div>
+        <div id="stockForm" class="row">
+            <div class="col-md-offset-2 col-md-6 col-lg-offset-2 col-lg-6 col-sm-8 col-xs-8">
+                <div class="input-group">
+                    <input type="text" id="symbol" class="form-control" placeholder="Ticker Symbol(s)"/>
+                    <span class="input-group-btn">
+                <button id="symbolBtn" class="btn" type="button" onclick="getDataTimed()">Get Data</button>
+            </span>
+                </div>
+            </div>
+            <div class="col-md-offset-1 col-md-1 col-lg-offset-1 col-lg-1 col-sm-offset-1 col-sm-1 col-xs-offset-1 col-xs-1">
+                <div class="switch">
+                    <input id="refreshBtn" title="Refresh Data Every 30 Seconds" type="checkbox">
+                    <div class="slider" onclick="clickSlider()"></div>
+                </div>
+            </div>
+            <div class="col-md-2 col-lg-2 col-sm-2 col-xs-2">
+                Refresh Data <br />Every 30 Seconds
+            </div>
+        </div>
+        <div id="warning" class="row">
+            No stock information gathered. Please try again.
+        </div>
+        <div id="stockHeader" class="row stockData">
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1">Symbol</div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1">Logo</div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1">Price</div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1">Change</div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1">% Chg</div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1">Low</div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1">High</div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1">Volume</div>
+            <div class="col-md-2 col-lg-2 col-sm-2 col-xs-2">Name</div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1">Mkt Cap</div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1">Exchange</div>
+        </div>
+        <div id="stock1" class="row stockData">
+            <div class="symbol col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-2 col-lg-2 col-sm-2 col-xs-2"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+        </div>
+        <div id="stock2" class="row stockData">
+            <div class="symbol col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-2 col-lg-2 col-sm-2 col-xs-2"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+        </div>
+        <div id="stock3" class="row stockData">
+            <div class="symbol col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-2 col-lg-2 col-sm-2 col-xs-2"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+        </div>
+        <div id="stock4" class="row stockData">
+            <div class="symbol col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-2 col-lg-2 col-sm-2 col-xs-2"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+        </div>
+        <div id="stock5" class="row stockData">
+            <div class="symbol col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-2 col-lg-2 col-sm-2 col-xs-2"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+        </div>
+        <div id="stock6" class="row stockData">
+            <div class="symbol col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-2 col-lg-2 col-sm-2 col-xs-2"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+        </div>
+        <div id="stock7" class="row stockData">
+            <div class="symbol col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-2 col-lg-2 col-sm-2 col-xs-2"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+        </div>
+        <div id="stock8" class="row stockData">
+            <div class="symbol col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-2 col-lg-2 col-sm-2 col-xs-2"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+        </div>
+        <div id="stock9" class="row stockData">
+            <div class="symbol col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-2 col-lg-2 col-sm-2 col-xs-2"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+        </div>
+        <div id="stock10" class="row stockData">
+            <div class="symbol col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-2 col-lg-2 col-sm-2 col-xs-2"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+        </div>
+        <div id="stock11" class="row stockData">
+            <div class="symbol col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-2 col-lg-2 col-sm-2 col-xs-2"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+        </div>
+        <div id="stock12" class="row stockData">
+            <div class="symbol col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-2 col-lg-2 col-sm-2 col-xs-2"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+        </div>
+        <div id="stock13" class="row stockData">
+            <div class="symbol col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-2 col-lg-2 col-sm-2 col-xs-2"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+        </div>
+        <div id="stock14" class="row stockData">
+            <div class="symbol col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-2 col-lg-2 col-sm-2 col-xs-2"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+        </div>
+        <div id="stock15" class="row stockData">
+            <div class="symbol col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-2 col-lg-2 col-sm-2 col-xs-2"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+        </div>
+        <div id="stock16" class="row stockData">
+            <div class="symbol col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-2 col-lg-2 col-sm-2 col-xs-2"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+        </div>
+        <div id="stock17" class="row stockData">
+            <div class="symbol col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-2 col-lg-2 col-sm-2 col-xs-2"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+        </div>
+        <div id="stock18" class="row stockData">
+            <div class="symbol col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-2 col-lg-2 col-sm-2 col-xs-2"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+        </div>
+        <div id="stock19" class="row stockData">
+            <div class="symbol col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-2 col-lg-2 col-sm-2 col-xs-2"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+        </div>
+        <div id="stock20" class="row stockData">
+            <div class="symbol col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-2 col-lg-2 col-sm-2 col-xs-2"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+        </div>
+        <div id="timestamp" class="row">
+            Data last refreshed at: <span id="ts"></span>.
+        </div>
+        <div id="footer" class="row">
+            This page created by Jason Murphy (murphyjp), 2016.12.20<br/>
+            MSOE, Dr. Jay Urbain, SE2840 Web Application Development<br/>
+            Lab 4: Bootsrap + jQuery Stock Portolio
+        </div>
+
+    </div>
+</div>
+</body>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+<script type="application/javascript" src="js/portfolio.js"></script>
+</html>
