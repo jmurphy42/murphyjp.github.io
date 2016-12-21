@@ -248,7 +248,7 @@ function warning(msg){
 function getDataTimed() {
     checkInputSet();
     hideData();
-    var url = "http://query.yahooapis.com/v1/public/yql";
+    var url = "https://query.yahooapis.com/v1/public/yql";
     var symbol = $("#symbol").val();
     var data = encodeURIComponent("select * from yahoo.finance.quotes where symbol in ('" + symbol + "')");
     $.getJSON(url, 'q=' + data + "&format=json&diagnostics=true&env=http://datatables.org/alltables.env")
