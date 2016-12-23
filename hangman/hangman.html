@@ -3,11 +3,12 @@
 <head>
     <meta charset="utf-8"/>
     <!-- The title changes with each win or loss -->
-    <title>Jason Murphy W:0 L:0</title>
+    <title>Hangman</title>
     <link rel="stylesheet" type="text/css" href="hangman.css">
-    <script src="jquery-3.1.1.js"></script>
+    <script src="../jquery-3.1.1.js"></script>
     <!-- All game logic goes in this script file -->
     <script src="hangman.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans|Slabo+27px" rel="stylesheet">
 </head>
 
 <body>
@@ -18,19 +19,19 @@ changes during game play to indicate when the mouse cursor passes over a letter,
 letters that have been correctly-guessed, and letters that have been incorrectly-guessed. -->
 <table class="alphabet">
     <tr>
-        <td>a</td>  <td>b</td>  <td>c</td>  <td>d</td>  <td>e</td>  <td>f</td>
+        <td>a</td> <td>b</td> <td>c</td> <td>d</td> <td>e</td> <td>f</td>
     </tr>
     <tr>
-        <td>g</td>  <td>h</td>  <td>i</td>  <td>j</td>  <td>k</td>  <td>l</td>
+        <td>g</td> <td>h</td> <td>i</td> <td>j</td> <td>k</td> <td>l</td>
     </tr>
     <tr>
-        <td>m</td>  <td>n</td>  <td>o</td>  <td>p</td>  <td>q</td>  <td>r</td>
+        <td>m</td> <td>n</td> <td>o</td> <td>p</td> <td>q</td> <td>r</td>
     </tr>
     <tr>
-        <td>s</td>  <td>t</td>  <td>u</td>  <td>v</td>  <td>w</td>  <td>x</td>
+        <td>s</td> <td>t</td> <td>u</td> <td>v</td> <td>w</td> <td>x</td>
     </tr>
     <tr>
-        <td>y</td>  <td>z</td>
+        <td>y</td> <td>z</td>
     </tr>
 </table>
 
@@ -39,31 +40,38 @@ sub-divs accompanying the image are used to hide or expose the various parts
 of the hangman image as the game progresses. The divs, initially opaque,
 fade out as incorrect guesses are made, each time exposing more of the hangman image.-->
 <div class="image">
-    <img class="image" src="hangman.jpg" alt="hangman image">
-    <div id="b1"></div>
-    <div id="b2"></div>
-    <div id="b3"></div>
-    <div id="b4"></div>
-    <div id="b5"></div>
-    <div id="b6"></div>
+    <img class="image" src="img/hm0.jpg" alt="hangman image">
+    <img class="image" src="img/hm1.jpg" alt="hangman image">
+    <img class="image" src="img/hm2.jpg" alt="hangman image">
+    <img class="image" src="img/hm3.jpg" alt="hangman image">
+    <img class="image" src="img/hm4.jpg" alt="hangman image">
+    <img class="image" src="img/hm5.jpg" alt="hangman image">
+    <img class="image" src="img/hm6.jpg" alt="hangman image">
+    <img class="image" src="img/hm7.jpg" alt="hangman image">
+    <img class="image" src="img/hm8.jpg" alt="hangman image">
 </div>
+<div id="imgCredit">Image credit: <a href="https://www.flickr.com/photos/theadversary/" target="_blank">The Adversary</a></div>
 
 <!-- This table contains the letters of the 6-letter word being guessed.
 The table elements must be dynamically populated during game play when the
 correct letters are guessed by the user. -->
 <table class="word">
     <tr>
-        <td>?</td>  <td>?</td>  <td>?</td>  <td>?</td>  <td>?</td>  <td>?</td>
+        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
     </tr>
 </table>
 
 <!-- Reset button - used to restart the game. -->
-<input id="reset" type="button" value="Reset" />
+<div id="reset">
+    <div>Reset Game</div>
+</div>
 
 <!-- One of the following messages must appear at the end of the game,
 and continue to blink until the Reset button is pressed -->
 <p id="win">You won!</p>
 <p id="fail">You lost!</p>
+<p id="wins">0</p>
+<p id="losses">0</p>
 
 </body>
 </html>

@@ -1,71 +1,151 @@
 body {
     /* default font and background for everything */
-    background-color: grey;
-    font-family: Arial, sans-serif;
+    background-color: #999999;
+    font-family: 'Slabo 27px', serif;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 .alphabet {
     /* layout for the alphabet table */
+    font-family: 'Slabo 27px', serif;
+    font-weight: 600;
     position: absolute;
     top: 10px;
     left: 10px;
-    border: solid;
-    background-color: black;
-    color: white;
+    border: 3px solid #000000;
+    background-color: #222222;
+    color: whitesmoke;
     font-size:48px;
     width: 500px;
     margin: 0;
-    padding: 0;
+    padding: 20px;
 }
 .alphabet td {
     /* size/alignment for individual letters in the alphabet */
     width:15%;
     text-align: center;
+    cursor: pointer;
 }
 .word {
     /* layout for the hidden word */
-    background-color: darkslategrey;
-    color: lightblue;
+    font-family: 'Slabo 27px', serif;
+    font-weight: 600;
+    background-color: #222222;
+    color: whitesmoke;
     position: absolute;
     font-size:48px;
-    top: 450px;
+    top: 380px;
     left: 10px;
     width: 500px;
-    border: solid;
+    border: 3px solid #000000;
     margin: 0;
     padding: 0;
+    cursor: default;
 }
 .word td {
     /* size/alignment for the individual letters in the word */
-    width:15%;
+    width:8%;
     text-align: center;
-    opacity: 0.1;      /* change this value to hide the word!!! */
+    color: whitesmoke;
+    height: 70px;
+    opacity: 0.1;
+}
+#wins{
+    /* Win stats */
+    position: absolute;
+    font-size:72px;
+    font-weight: bolder;
+    color: #217225;
+    left: 10px;
+    top: 385px;
+    width: 100px;
+    text-align: left;
+    cursor: default;
+}
+#losses{
+    /* Loss stats */
+    position: absolute;
+    font-size:72px;
+    font-weight: bolder;
+    color: #9a2517;
+    left: 410px;
+    top: 385px;
+    width: 100px;
+    text-align: right;
+    cursor: default;
 }
 #win {
     /* "You win" message */
     position: absolute;
     font-size:72px;
-    left: 150px;
-    top: 250px;
-    color: green;
+    color: #217225;
+    left: 10px;
+    top: 385px;
+    width: 500px;
+    text-align: center;
     visibility: hidden;
+    cursor: default;
 }
 #fail {
     /* "You lose" message */
     position: absolute;
     font-size:72px;
-    color: red;
-    left: 150px;
-    top:250px;
+    color: #9a2517;
+    left: 10px;
+    top: 385px;
+    width: 500px;
+    text-align: center;
     visibility: hidden;
+    cursor: default;
 }
 #reset {
-    /* Reset button */
-    font-size:24px;
+    /* Reset button div */
+    font-family: 'Nunito Sans', sans-serif;
+    font-size:32px;
+    font-weight: 600;
+    text-align: center;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
     position: absolute;
-    left: 10px;
+    cursor: pointer;
+    left: 135px;
     top: 550px;
-    width:500px;
-    height:50px;
+    width: 250px;
+    height: 50px;
+    color: #222222;
+    background-color: #666666;
+    border-radius: 20px;
+    box-shadow: 0 10px #333333;
+    opacity: 0.2;
+}
+#reset div{
+    margin-top: 5px;
+}
+#reset:hover, #reset.hover{
+    background-color: #555555;
+}
+#reset:active, #reset.active{
+    background-color: #444444;
+    box-shadow: 0 5px #333333;
+    -webkit-transform: translateY(5px);
+    -moz-transform: translateY(5px);
+    -ms-transform: translateY(5px);
+    -o-transform: translateY(5px);
+    transform: translateY(5px);
+}
+
+#imgCredit{
+    position: absolute;
+    top: 590px;
+    left: 520px;
+    width: 525px;
+    text-align: right;
+    font-size: x-small;
+    color: #555555;
 }
 div.image {
     /* div containing hangman image and hiding divs*/
@@ -73,9 +153,9 @@ div.image {
     top: 10px;
     left: 520px;
     border: solid;
-    background-color: grey;
-    width:400px;
-    height:600px;
+    background-color: whitesmoke;
+    width:525px;
+    height:575px;
     margin: 0;
     padding: 0;
 }
@@ -84,49 +164,8 @@ div.image img.image {
     position:absolute;
     width:100%;
     height:auto;
-    z-index: 1;
+    display: none;
 }
-div.image div {
-    /* divs that hide the hangman image */
-    position: absolute;
-    background-color: white;
-    z-index: 2;
-    opacity: 1;
+div.image:nth-child(1) {
+    display: block;
 }
-div.image div#b1 {
-    left: 2%;
-    top: 86%;
-    width:36%;
-    height:10%;
-}
-div.image div#b2 {
-    left: 17%;
-    top: 16%;
-    width:5%;
-    height:70%;
-}
-div.image div#b3 {
-    left: 19%;
-    top: 15%;
-    width:51%;
-    height:2%;
-}
-div.image div#b4 {
-    left: 65%;
-    top: 16%;
-    width:5%;
-    height:15%;
-}
-div.image div#b5 {
-    left: 50%;
-    top: 30%;
-    width:38%;
-    height:55%;
-}
-div.image div#b6 {
-    left: 63%;
-    top: 34%;
-    width:11%;
-    height:9%;
-}
-

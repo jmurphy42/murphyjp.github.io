@@ -9,13 +9,20 @@
  * This file contains the jQuery and JavaScript code that implements the game logic.
  */
 
-// Here is a sample array of 6-character words to be guessed.
-var words = ["abacus", "bamboo", "cuckoo", "dimple", "easter", "filter",
-    "geyser", "happen", "indigo", "jersey", "karate", "little",
-    "marker", "normal", "oblong", "patent", "quiche", "random",
-    "sleepy", "terror", "unable", "violet", "wallet", "xylene",
-    "yellow", "zipper"];
-var currentLetterColor = "white";
+var words;
+// var category = "8"; // 0 = all words
+//                     // 1 = animals
+//                     // 2 = occupations
+//                     // 3 = foods
+//                     // 4 = countries
+//                     // 5 = general words
+//                     // 6 = 8-letter general words
+//                     // 7 = 10-letter general words
+var myWhite = '#f5f5f5';
+var myGreen= '#219225';
+var myRed = '#ba2517';
+var myYellow = '#caca17';
+var currentLetterColor = myWhite;
 var currentWord = "";
 var incorrectGuesses = 0;
 var wins = 0;
@@ -23,13 +30,31 @@ var losses = 0;
 var loopedEvent;      //setInterval object, which blinks the win/loss banners
 var blinkTime = 500;  //how long each blink takes, in milliseconds
 var fadeLength = 500; //how long it takes for items to fade in
+var wordsInit = false;
+var wordOffset = 0;
+var status = 0;
 
 /**
- * onload:
+ * onload: get words, then move on to initializing the game
+ */
+$(document).ready(function () {
+    getWords("words/words0.txt");
+    initLoop();
+});
+
+function initLoop(){
+    if (wordsInit){
+        initGame();
+    }else{
+        setTimeout(initLoop, 250);
+    }
+}
+
+/**
  * Sets up UI and Game variables.
  * Attaches mouse listeners to various DOM elements.
  */
-$(document).ready(function () {
+function initGame(){
     resetUI();
     resetGame();
 
@@ -41,7 +66,7 @@ $(document).ready(function () {
     // Highlight each letter in the alphabet yellow as the mouse passes over
     $letters.mouseover(function () {
         currentLetterColor = $(this).css('color');
-        $(this).css('color', 'yellow');
+        $(this).css('color', myYellow);
     });
 
     // Handle the mouseout event for letters in the alphabet
@@ -53,17 +78,30 @@ $(document).ready(function () {
 
     // Handle the reset button event
     $resetButton.click(function () {
-        resetUI();
-        resetGame();
+        if (status==0) {
+            resetUI();
+            resetGame();
+        }
+
     });
 
+    status = 1;
+    toggleResetBtn();
+}
 
-});
+function toggleResetBtn(){
+    var $reset = $('#reset');
+    if (status==0){ //not playing, turn button on
+        $reset.animate({'opacity':'1'},250);
+    }else{          //playing, disable button
+        $reset.animate({'opacity':'0.2'},250);
+    }
+}
 
 /**
  * Adds click functions to the letters
  */
-function addClickFunctions(){
+function addClickFunctions() {
     var $letters = $(".alphabet td");
     $letters.click(function () {
         clickLetter(this);
@@ -73,7 +111,7 @@ function addClickFunctions(){
 /**
  * Removes click functions from the letters
  */
-function removeClickFunctions(){
+function removeClickFunctions() {
     var $letters = $(".alphabet td");
     $letters.off('click');
 }
@@ -88,16 +126,15 @@ function clickLetter(letterClicked) {
     var letterCheck = checkLetter(letter);
 
     //remove EventListener for letter
-    $('.alphabet td:contains('+letter+')').off('click');
+    $('.alphabet td:contains(' + letter + ')').off('click');
 
-    //correct guess
-    if (letterCheck.correct) {
-        letterClicked.style.color = 'green';
-        currentLetterColor = 'green';
+    if (letterCheck.correct) { //correct guess
+        letterClicked.style.color = myGreen;
+        currentLetterColor = myGreen;
 
         for (var l = 0; l < currentWord.length; l++) {  //cycle through letters in word
             if (letterCheck.place[l] == 1) {            //if the letter is correct
-                revealLetter(l, letter, 'black');       //reveal the letter
+                revealLetter(l, letter, myWhite);       //reveal the letter
             }
         }
 
@@ -105,15 +142,16 @@ function clickLetter(letterClicked) {
             youWin();
         }
 
-        // incorrect guess
-    } else {
-        letterClicked.style.color = 'red';
-        currentLetterColor = 'red';
+    } else { // incorrect guess
+        letterClicked.style.color = myRed;
+        currentLetterColor = myRed;
 
-        $("div.image div").eq(incorrectGuesses).fadeOut(fadeLength); //reveal piece of hangman
+        //reveal piece of hangman
+        var $images = $("div.image").children();
+        $images.eq(incorrectGuesses+1).fadeIn(fadeLength);
         incorrectGuesses++;
 
-        if (incorrectGuesses >= 6) {  //
+        if (incorrectGuesses >= 6) {
             youLose();
         }
     }
@@ -127,10 +165,15 @@ function clickLetter(letterClicked) {
 function youWin() {
     var winBanner = $("#win");
     blinkBanner(winBanner);
-    $(".word td").css('color','green');
+    $(".word td").css('color', myGreen);
     wins++;
     removeClickFunctions();
-    updateTitle();
+    updateStats();
+    status = 0;
+    toggleResetBtn();
+    var $images = $("div.image").children();
+    $images.eq(8).fadeIn(fadeLength);
+
 }
 
 /**
@@ -140,22 +183,27 @@ function youLose() {
     var lossBanner = $("#fail");
     blinkBanner(lossBanner);
     for (var n = 0; n < currentWord.length; n++) {
-        var $letter = $(".word td").eq(n);
-        if ($letter.html() == "?") {                           //if the letter is "?"
-            revealLetter(n, currentWord.charAt(n), 'darkred'); //reveal it
+        var $letter = $(".word td").eq(n+wordOffset);
+        if ($letter.html() == "?") {                       //if the letter is "?"
+            revealLetter(n, currentWord.charAt(n), myRed); //reveal it
         }
     }
     losses++;
     removeClickFunctions();
-    updateTitle();
+    updateStats();
+    status = 0;
+    toggleResetBtn();
+    var $images = $("div.image").children();
+    $images.eq(7).fadeIn(fadeLength);
+
 }
 
 /**
- * Updates the website's title with the current wins & losses
+ * Updates the stats with the current wins & losses
  */
-function updateTitle(){
-    $(document).prop('title',
-        "Jason Murphy W:" + wins + " L:" + losses);
+function updateStats() {
+    $('#wins').html(wins);
+    $('#losses').html(losses);
 }
 
 /**
@@ -175,13 +223,13 @@ function blinkBanner(banner) {
  * Reveals letter
  * @param index  - index of letter
  * @param letter - letter to reveal
- * @param color  - color as which to reveal letter
+ * @param color  - color of letter to reveal
  */
 function revealLetter(index, letter, color) {
-    var letterCell = $(".word td").eq(index);
+    var letterCell = $(".word td").eq(index+wordOffset);
     letterCell.html(letter);             //write it here
     letterCell.css('color', color);
-    letterCell.animate({'opacity':'1'},fadeLength);
+    letterCell.animate({'opacity': '1'}, fadeLength);
 }
 
 /**
@@ -212,8 +260,8 @@ function checkLetter(letter) {
 function checkForWin() {
     var won = true;
     $(".word td").each(function () {
-        if ($(this).html() == "?") {    //if the letter is "?"
-            won = false;             //game not over
+        if ($(this).html() == "?") {   //if the letter is "?"
+            won = false;               //game not over
         }
     });
     return won;
@@ -225,12 +273,25 @@ function checkForWin() {
 function resetUI() {
     $("#win").css('visibility', 'hidden');   //hide win banner
     $("#fail").css('visibility', 'hidden');  //hide loss banner
-    $(".alphabet td").css('color', 'white'); //deselect all letters
+    $(".alphabet td").css('color', myWhite); //deselect all letters
     var letters = $(".word td");
-    letters.html("?");                       //hide word
-    letters.css('color', 'lightblue');
-    letters.animate({'opacity':'0.1'},100);
-    $(".image div").fadeIn(100);             //hide hangman
+    letters.html("");                        //hide word
+    letters.css('color', myWhite);
+    letters.animate({'opacity': '0.1'}, 100);
+    var $images = $("div.image").children();
+    $images.css('display', 'none'); //hide hangman
+    $images.eq(0).fadeIn(fadeLength);
+}
+
+/**
+ * Sets word
+ */
+function setWord() {
+    wordOffset = parseInt((12-currentWord.length)/2);
+    for (var i = 0; i < currentWord.length; i++) {
+        var $word = $(".word td");
+        $word.eq(i+wordOffset).html("?");
+    }
 }
 
 /**
@@ -239,8 +300,30 @@ function resetUI() {
 function resetGame() {
     var newWordIndex = parseInt(Math.random() * words.length); //get random int for word
     currentWord = words[newWordIndex];     //set current word
-    currentLetterColor = "white";          //reset current letter color
+    setWord();
+    currentLetterColor = myWhite;          //reset current letter color
     incorrectGuesses = 0;                  //reset number of incorrect guesses
     clearInterval(loopedEvent);            //clear the blinking Timer
     addClickFunctions();                   //re-add click functions to the letters
+    status = 1;
+    toggleResetBtn();
+}
+
+/**
+ * Get words from text file for the game.
+ * @param file
+ */
+function getWords(file) {
+    var rawFile = new XMLHttpRequest();
+    rawFile.open("GET", file);
+    rawFile.onreadystatechange = function () {
+        if (rawFile.readyState === 4) {
+            if (rawFile.status === 200 || rawFile.status == 0) {
+                var allText = rawFile.responseText;
+                words = allText.split('\r\n');
+                wordsInit = true;
+            }
+        }
+    };
+    rawFile.send(null);
 }
