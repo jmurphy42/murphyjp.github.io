@@ -19,6 +19,7 @@ h3{
     clear: right;
     border-bottom: 1px solid #252735;
 }
+
 #home{
     width: 40px;
     height: 40px;
@@ -27,9 +28,27 @@ h3{
     text-align: center;
     background-color: #252735;
     color: gainsboro;
-    padding: 20px;
+    padding: 15px 23px 25px 17px;
     float: left;
 }
+#homeImg{
+    margin: 10px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    opacity: 0.7;
+}
+#homeImg:hover{
+    opacity: 0.9;
+}
+#homeImg:active{
+    opacity: 1;
+}
+
 a{
     color: #904519;
     font-weight: bolder;

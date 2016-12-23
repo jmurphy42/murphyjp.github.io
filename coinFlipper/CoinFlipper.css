@@ -4,17 +4,6 @@ body{
     color: darkslategray;
     font-family: 'Montserrat', sans-serif;
 }
-#home{
-    width: 40px;
-    height: 40px;
-    font-size: x-large;
-    font-weight: bolder;
-    text-align: center;
-    background-color: darkslategray;
-    color: gainsboro;
-    padding: 20px;
-    float: left;
-}
 a{
     color: #904519;
     font-weight: bolder;
@@ -87,4 +76,33 @@ table{
 }
 .outputRow{
     display: none;
+}
+
+#home{
+    width: 40px;
+    height: 40px;
+    font-size: x-large;
+    font-weight: bolder;
+    text-align: center;
+    background-color: darkslategray;
+    color: gainsboro;
+    padding: 15px 23px 25px 17px;
+    float: left;
+}
+#homeImg{
+    margin: 10px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    opacity: 0.7;
+}
+#homeImg:hover{
+    opacity: 0.9;
+}
+#homeImg:active{
+    opacity: 1;
 }

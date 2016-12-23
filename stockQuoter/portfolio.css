@@ -11,7 +11,7 @@
 }
 h1{
     font-family: 'Slabo 27px', serif;
-    padding: 15px;
+    padding: 15px 15px 15px 80px;
     background-color: #1c4f9a;
     color: beige;
 }
@@ -122,4 +122,32 @@ input:checked + .slider:before {
     -ms-transform: translateX(26px);
     -o-transform: translateX(26px);
     transform: translateX(26px);
+}
+
+/*Home button*/
+#home{
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    position: absolute;
+    top: 30px;
+    left: 10px;
+}
+#homeImg{
+    margin: 10px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    opacity: 0.5;
+}
+#homeImg:hover{
+    opacity: 0.9;
+}
+#homeImg:active{
+    opacity: 1;
 }

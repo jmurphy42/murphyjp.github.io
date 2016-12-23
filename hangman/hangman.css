@@ -100,6 +100,35 @@ body {
     visibility: hidden;
     cursor: default;
 }
+
+#home{
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    position: absolute;
+    top: 590px;
+    left: 520px;
+    width: 525px;
+}
+#homeImg{
+    margin: 10px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    opacity: 0.7;
+}
+#homeImg:hover{
+    opacity: 0.9;
+}
+#homeImg:active{
+    opacity: 1;
+}
+
 #reset {
     /* Reset button div */
     font-family: 'Nunito Sans', sans-serif;
