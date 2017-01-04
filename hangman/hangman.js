@@ -334,7 +334,7 @@ function getWords(file) {
             if (rawFile.status === 200 || rawFile.status == 0) {
                 var allText = rawFile.responseText;
                 words = allText.split('\r\n');
-                if (words[0].length>12){ //then some parsing issue occurred
+                if (words == null || words[0].length > 12){ //then some parsing issue occurred
                     hardWordsLoad();
                 }
                 wordsInit = true;
