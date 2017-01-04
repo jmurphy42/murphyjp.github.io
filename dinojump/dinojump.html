@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dino Jump</title>
+    <link type="text/css" rel="stylesheet" href="dinojump.css" />
+    <link href="https://fonts.googleapis.com/css?family=Shadows+Into+Light" rel="stylesheet">
+    <script type="application/javascript" src="dinojump.js"></script>
+</head>
+<body onload="init()" onresize="handleResize()">
+<canvas id="canvas">
+    Your web browser does not support HTML5 canvas, and so cannot host this game.
+</canvas>
+<div id="gameOver" onclick="location.reload()">Game Over</div>
+<div id="paused" onclick="togglePause()">Paused</div>
+<div id="fruitsLabel">0</div>
+<div id="stats">
+
+</div>
+</body>
+</html>
