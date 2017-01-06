@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Dino Jump</title>
-    <link type="text/css" rel="stylesheet" href="dinojump.css" />
+    <link type="text/css" rel="stylesheet" href="dinojump.css"/>
     <link href="https://fonts.googleapis.com/css?family=Shadows+Into+Light" rel="stylesheet">
     <script type="application/javascript" src="dinojump.js"></script>
 </head>
@@ -12,10 +12,35 @@
     Your web browser does not support HTML5 canvas, and so cannot host this game.
 </canvas>
 <div id="gameOver" onclick="location.reload()">Game Over</div>
+<div id="startTitle" onclick="togglePause()">
+    DINOJUMP
+</div>
+<div id="start" onclick="togglePause()">
+    ← and → = move<br/>
+    ↑ or space = jump<br/>
+    'p' = toggle pause<br/>
+    <br/>
+    Apples = 1 point<br/>
+    Melons = 2 points<br/>
+    Lemons = -2 points<br/>
+    Get 50 points to win before the dinosaurs get you!<br/>
+    <br/>
+    Click here or 'p' to start game!
+</div>
 <div id="paused" onclick="togglePause()">Paused</div>
+<div id="win">Great job! You win!</div>
 <div id="fruitsLabel">0</div>
 <div id="stats">
-
+    Player: (<span id="charX">0</span>, <span id="charY">0</span>)<br/><br/>
+    Rex: (<span id="rexX">0</span>, <span id="rexY">0</span>)<br/>
+    Bronto: (<span id="brontoX">0</span>, <span id="brontoY">0</span>)<br/>
+    Stegy: (<span id="stegyX">0</span>, <span id="stegyY">0</span>)<br/>
+    Trice: (<span id="triceX">0</span>, <span id="triceY">0</span>)<br/><br/>
+    Apple 1: (<span id="apple1X">0</span>, <span id="apple1Y">0</span>)<br/>
+    Apple 2: (<span id="apple2X">0</span>, <span id="apple2Y">0</span>)<br/>
+    Apple 3: (<span id="apple3X">0</span>, <span id="apple3Y">0</span>)<br/>
+    Melon: (<span id="melonX">0</span>, <span id="melonY">0</span>)<br/>
+    Lemon: (<span id="lemonX">0</span>, <span id="lemonY">0</span>)
 </div>
 </body>
 </html>

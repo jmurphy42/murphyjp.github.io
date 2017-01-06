@@ -6,7 +6,9 @@ var canvas,
     context,
     WIDTH,
     HEIGHT,
-    paused = true;
+    paused = true,
+    status = 0,
+    stats = false,
     dimOffset = 0;
 
 // var mx = 0,
@@ -34,7 +36,6 @@ var speed = 0,
     isMoving = false,
     maxSpeed = 10,
     moveInterval,
-    collisionThreshold = 25,
     isHurt = false,
     lives = 4,
     fruits = 0;
@@ -64,22 +65,26 @@ var apple1X = 0,
 
 var dinoMaxEyeHeight = 8,
     facingRex = 0,
-    rexX = -50,
+    rexX = -250,
+    rexY = charY - 62,
     rexEyeHeight = dinoMaxEyeHeight,
     rexEyeTime = 0,
     rexSpeed = 6,
     facingBronto = 0,
-    brontoX = -50,
+    brontoX = -250,
+    brontoY = charY - 91,
     brontoEyeHeight = dinoMaxEyeHeight,
     brontoEyeTime = 0,
     brontoSpeed = 2,
     facingStegy = 0,
-    stegyX = -50,
+    stegyX = -250,
+    stegyY = charY - 46,
     stegyEyeHeight = dinoMaxEyeHeight,
     stegyEyeTime = 0,
     stegySpeed = 4,
     facingTrice = 0,
-    triceX = -50,
+    triceX = -250,
+    triceY = charY - 26,
     triceEyeHeight = dinoMaxEyeHeight,
     triceEyeTime = 0,
     triceSpeed = 3,
@@ -114,10 +119,15 @@ function init() {
     canvas.height = window.innerHeight - dimOffset;
     HEIGHT = canvas.height;
     WIDTH = canvas.width;
+    document.getElementById('startTitle').style.left = parseInt(WIDTH / 2 - 150) + "px";
     canvas.onselectstart = function () {
         return false;
     }; //disallows double-click highlighting
     charY = HEIGHT - yOffset;
+    rexY = charY - 62;
+    brontoY = charY - 91;
+    stegyY = charY - 46;
+    triceY = charY - 26;
 
     loadImage("hair");
     loadImage("head");
@@ -204,10 +214,31 @@ function draw() {
         } else {
             drawCharacterLeft();
         }
-    } else {
-        var gameOverBanner = document.getElementById('gameOver');
-        gameOverBanner.style.left = parseInt(WIDTH / 2 - 150) + "px";
-        gameOverBanner.style.display = 'block';
+    } else { //game over
+        if (fruits >= 50){
+            var winBanner = document.getElementById('win');
+            winBanner.style.left = parseInt(WIDTH / 2 - 150) + "px";
+            winBanner.style.display = 'block';
+        }else {
+            charX = -500;
+            var gameOverBanner = document.getElementById('gameOver');
+            gameOverBanner.style.left = parseInt(WIDTH / 2 - 150) + "px";
+            gameOverBanner.style.display = 'block';
+        }
+    }
+
+    var pausedBanner = document.getElementById('paused');
+    var winBanner = document.getElementById('start');
+    if (status == 0){
+        winBanner.style.left = parseInt(WIDTH / 2 - 150) + "px";
+        winBanner.style.display = 'block';
+    }else{
+        if (paused) {
+            pausedBanner.style.left = parseInt(WIDTH / 2 - 150) + "px";
+            pausedBanner.style.display = 'block';
+        } else {
+            pausedBanner.style.display = 'none';
+        }
     }
 
     drawFruit();
@@ -271,12 +302,12 @@ function drawFruit() {
 function drawRex() {
     if (facingRex == 1) {
         drawEllipse(rexX + 40, charY + 29, 80, 5); //shadow
-        context.drawImage(images["rex-r"], rexX, charY - 62);
+        context.drawImage(images["rex-r"], rexX, rexY);
         drawEllipse(rexX + 23, charY - 54, 6, rexEyeHeight); // Left Eye
         drawEllipse(rexX + 30, charY - 54, 6, rexEyeHeight); // Right Eye
     } else if (facingRex == -1) {
         drawEllipse(rexX + 40, charY + 29, 80, 5); //shadow
-        context.drawImage(images["rex"], rexX, charY - 62);
+        context.drawImage(images["rex"], rexX, rexY);
         drawEllipse(rexX + 23, charY - 54, 6, rexEyeHeight); // Left Eye
         drawEllipse(rexX + 30, charY - 54, 6, rexEyeHeight); // Right Eye
     }
@@ -284,40 +315,40 @@ function drawRex() {
 function drawBronto() {
     if (facingBronto == 1) {
         drawEllipse(brontoX + 55, charY + 29, 120, 5); //shadow
-        context.drawImage(images["bronto-r"], brontoX, charY - 91);
+        context.drawImage(images["bronto-r"], brontoX, brontoY);
         drawEllipse(brontoX + 19, charY - 82, 6, brontoEyeHeight); // Left Eye
         drawEllipse(brontoX + 26, charY - 82, 6, brontoEyeHeight); // Right Eye
     } else if (facingBronto == -1) {
         drawEllipse(brontoX + 55, charY + 29, 120, 5); //shadow
-        context.drawImage(images["bronto"], brontoX, charY - 91);
-        drawEllipse(brontoX + 19, charY - 82, 6, brontoEyeHeight); // Left Eye
-        drawEllipse(brontoX + 26, charY - 82, 6, brontoEyeHeight); // Right Eye
+        context.drawImage(images["bronto"], brontoX, brontoY);
+        drawEllipse(brontoX + 19, brontoY + 11, 6, brontoEyeHeight); // Left Eye
+        drawEllipse(brontoX + 26, brontoY + 11, 6, brontoEyeHeight); // Right Eye
     }
 }
 function drawStegy() {
     if (facingStegy == 1) {
         drawEllipse(stegyX + 85, charY + 29, 155, 5); //shadow
-        context.drawImage(images["stegy-r"], stegyX, charY - 46);
-        drawEllipse(stegyX + 15, charY - 28, 6, stegyEyeHeight); // Left Eye
-        drawEllipse(stegyX + 22, charY - 28, 6, stegyEyeHeight); // Right Eye
+        context.drawImage(images["stegy-r"], stegyX, stegyY);
+        drawEllipse(stegyX + 15, stegyY + 18, 6, stegyEyeHeight); // Left Eye
+        drawEllipse(stegyX + 22, stegyY + 18, 6, stegyEyeHeight); // Right Eye
     } else if (facingStegy == -1) {
         drawEllipse(stegyX + 85, charY + 29, 155, 5); //shadow
-        context.drawImage(images["stegy"], stegyX, charY - 46);
-        drawEllipse(stegyX + 15, charY - 28, 6, stegyEyeHeight); // Left Eye
-        drawEllipse(stegyX + 22, charY - 28, 6, stegyEyeHeight); // Right Eye
+        context.drawImage(images["stegy"], stegyX, stegyY);
+        drawEllipse(stegyX + 15, stegyY + 18, 6, stegyEyeHeight); // Left Eye
+        drawEllipse(stegyX + 22, stegyY + 18, 6, stegyEyeHeight); // Right Eye
     }
 }
 function drawTrice() {
     if (facingTrice == 1) {
         drawEllipse(triceX + 55, charY + 29, 110, 5); //shadow
-        context.drawImage(images["trice-r"], triceX, charY - 26);
-        drawEllipse(triceX + 15, charY + 2, 6, triceEyeHeight); // Left Eye
-        drawEllipse(triceX + 22, charY + 2, 6, triceEyeHeight); // Right Eye
+        context.drawImage(images["trice-r"], triceX, triceY);
+        drawEllipse(triceX + 15, triceY + 24, 6, triceEyeHeight); // Left Eye
+        drawEllipse(triceX + 22, triceY + 24, 6, triceEyeHeight); // Right Eye
     } else if (facingTrice == -1) {
         drawEllipse(triceX + 55, charY + 29, 110, 5); //shadow
-        context.drawImage(images["trice"], triceX, charY - 26);
-        drawEllipse(triceX + 15, charY + 2, 6, triceEyeHeight); // Left Eye
-        drawEllipse(triceX + 22, charY + 2, 6, triceEyeHeight); // Right Eye
+        context.drawImage(images["trice"], triceX, triceY);
+        drawEllipse(triceX + 15, triceY + 24, 6, triceEyeHeight); // Left Eye
+        drawEllipse(triceX + 22, triceY + 24, 6, triceEyeHeight); // Right Eye
     }
 }
 
@@ -327,7 +358,7 @@ function drawCharacterRight() {
         context.save();
         context.globalAlpha = 0.6;
     }
-    if (jumping || jumpOffset>0) {
+    if (jumping || jumpOffset > 0) {
         drawEllipse(charX + 40, charY + 29, 120 + breathAmt - parseInt(jumpOffset / 5), 4); //shadow
         context.drawImage(images["leftArm-jump"], charX + 40, charY - 42 + breathAmt - jumpOffset);
         context.drawImage(images["legs-jump"], charX, charY - 6 - jumpOffset);
@@ -339,7 +370,7 @@ function drawCharacterRight() {
     context.drawImage(images["body"], charX, charY - 50 - jumpOffset);
     context.drawImage(images["head"], charX - 10, charY - 125 + breathAmt - jumpOffset);
     context.drawImage(images["hair"], charX - 27, charY - 138 + breathAmt - jumpOffset);
-    if (jumping || jumpOffset>0) {
+    if (jumping || jumpOffset > 0) {
         context.drawImage(images["rightArm-jump"], charX - 35, charY - 42 + breathAmt - jumpOffset);
     } else {
         context.drawImage(images["rightArm"], charX - 15, charY - 42 + breathAmt - jumpOffset);
@@ -365,9 +396,9 @@ function drawCharacterLeft() {
         context.save();
         context.globalAlpha = 0.6;
     }
-    if (jumping || jumpOffset>0) {
+    if (jumping || jumpOffset > 0) {
         drawEllipse(charX + 40, charY + 29, 120 + breathAmt - parseInt(jumpOffset / 5), 4); //shadow
-        context.drawImage(images["leftArm-jump-l"], charX - 13, charY - 42 + breathAmt - jumpOffset);
+        context.drawImage(images["leftArm-jump-l"], charX - 10, charY - 42 + breathAmt - jumpOffset);
         context.drawImage(images["legs-jump-l"], charX - 7, charY - 6 - jumpOffset);
     } else {
         drawEllipse(charX + 40, charY + 29, 160 + breathAmt, 6); //shadow
@@ -377,7 +408,7 @@ function drawCharacterLeft() {
     context.drawImage(images["body-l"], charX + 25, charY - 50 - jumpOffset);
     context.drawImage(images["head-l"], charX + 10, charY - 125 + breathAmt - jumpOffset);
     context.drawImage(images["hair-l"], charX + 7, charY - 138 + breathAmt - jumpOffset);
-    if (jumping || jumpOffset>0) {
+    if (jumping || jumpOffset > 0) {
         context.drawImage(images["rightArm-jump-l"], charX + 72, charY - 42 + breathAmt - jumpOffset);
     } else {
         context.drawImage(images["rightArm-l"], charX + 68, charY - 42 + breathAmt - jumpOffset);
@@ -406,7 +437,7 @@ function drawLives() {
             context.save();
             context.globalAlpha = 0.6;
         }
-        drawLifeSymbol(20,HEIGHT-35);
+        drawLifeSymbol(20, HEIGHT - 35);
         if (isHurt % 10 >= 5 && lives == 1) {
             context.restore();
         }
@@ -416,7 +447,7 @@ function drawLives() {
             context.save();
             context.globalAlpha = 0.6;
         }
-        drawLifeSymbol(40,HEIGHT-35);
+        drawLifeSymbol(40, HEIGHT - 35);
         if (isHurt % 10 >= 5 && lives == 2) {
             context.restore();
         }
@@ -426,7 +457,7 @@ function drawLives() {
             context.save();
             context.globalAlpha = 0.6;
         }
-        drawLifeSymbol(60,HEIGHT-35);
+        drawLifeSymbol(60, HEIGHT - 35);
         if (isHurt % 10 >= 5 && lives == 3) {
             context.restore();
         }
@@ -436,7 +467,7 @@ function drawLives() {
             context.save();
             context.globalAlpha = 0.6;
         }
-        drawLifeSymbol(80,HEIGHT-35);
+        drawLifeSymbol(80, HEIGHT - 35);
         if (isHurt % 10 >= 5 && lives == 4) {
             context.restore();
         }
@@ -445,17 +476,17 @@ function drawLives() {
 function drawFruitsCounter() {
     for (var i = 0; i < fruits; i++) {
         context.beginPath();
-        context.arc(i * 25 + 120, HEIGHT - 28, 9, 0, Math.PI * 2);
+        context.arc(i * 25 + 150, HEIGHT - 28, 9, 0, Math.PI * 2);
         context.fillStyle = '#222222';
         context.fill();
     }
     var label = document.getElementById("fruitsLabel");
     label.innerHTML = fruits + "";
     label.style.top = (HEIGHT - 40) + "px";
-    label.style.left = (fruits * 25 + 110) + "px";
+    label.style.left = (fruits * 25 + 140) + "px";
 }
 
-// Decides when to spawn a Fruit
+//Decides when to spawn a Fruit
 function spawnFruit() {
     var r;
     r = Math.floor(Math.random() * 5);
@@ -514,7 +545,7 @@ function spawnMelon() {
     }
 }
 
-// Decides when to spawn a Dino
+//Decides when to spawn a Dino
 function spawnDino() {
     var r;
     r = Math.floor(Math.random() * 5);
@@ -593,13 +624,11 @@ function updateMove() {
         if (isMoving) {
             move();
         }
-        if (jumping && jumpOffset == 0) {
-            jumpOffset += parseInt((jumpHeight - jumpOffset) / 4) + 2;
-        } else if (jumping && jumpOffset < jumpHeight) {
-            jumpOffset *= 2;
+        if (jumping && jumpOffset < jumpHeight) {
+            jumpOffset += parseInt(((jumpHeight - jumpOffset) / 4) + 2);
         }
         if (!jumping && jumpOffset > 0) {
-            jumpOffset -= parseInt((jumpOffset) / 3) + 2;
+            jumpOffset -= parseInt((jumpOffset / 3) + 2);
         }
         if (jumpOffset > jumpHeight) {
             jumpOffset = jumpHeight;
@@ -687,65 +716,98 @@ function updateMove() {
         collisionCheck();
         spawnDino();
         spawnFruit();
+
+        recordStats();
     }
 }
 
 // Moves character
 function move() {
-    if (speed < maxSpeed) {
-        speed += accel;
-    }
-    charX += facing * speed;
+    if (!paused) {
+        if (speed < maxSpeed) {
+            speed += accel;
+        }
+        charX += facing * speed;
 
-    if (charX <= 20) {
-        charX = 20;
-    }
-    if (charX >= (WIDTH - 105)) {
-        charX = (WIDTH - 105);
+        if (charX <= 20) {
+            charX = 20;
+        }
+        if (charX >= (WIDTH - 105)) {
+            charX = (WIDTH - 105);
+        }
     }
 }
 
 // Checks collisions between player and dinos/fruits
 function collisionCheck() {
-    if ((charX <= rexX + collisionThreshold && charX >= rexX - 2 * collisionThreshold && !jumping && !isHurt) ||
-        (charX <= brontoX + collisionThreshold && charX >= brontoX - 2.5 * collisionThreshold && !jumping && !isHurt) ||
-        (charX <= stegyX + collisionThreshold && charX >= stegyX - 3 * collisionThreshold && !jumping && !isHurt) ||
-        (charX <= triceX + collisionThreshold && charX >= triceX - 2.5 * collisionThreshold && !jumping && !isHurt)) {
+    var rexXc = charX - rexX,
+        rexYc = charY - rexY - jumpOffset,
+        brontoXc = charX - brontoX,
+        brontoYc = charY - brontoY - jumpOffset,
+        stegyXc = charX - stegyX,
+        stegyYc = charY - stegyY - jumpOffset,
+        triceXc = charX - triceX,
+        triceYc = charY - triceY - jumpOffset,
+        apple1Xc = charX - apple1X,
+        apple1Yc = charY - apple1Y - jumpOffset,
+        apple2Xc = charX - apple2X,
+        apple2Yc = charY - apple2Y - jumpOffset,
+        apple3Xc = charX - apple3X,
+        apple3Yc = charY - apple3Y - jumpOffset,
+        melonXc = charX - melonX,
+        melonYc = charY - melonY - jumpOffset,
+        lemonXc = charX - lemonX,
+        lemonYc = charY - lemonY - jumpOffset;
+    var collisionWithDino = false;
 
+    if (rexXc > -78 && rexXc < 100 && rexYc < 245 && rexYc > -29 && !isHurt) {
+        collisionWithDino = true; //collision with rex
+    }
+    if (brontoXc > -74 && brontoXc < 62 && brontoYc < 185 && brontoYc > -29 && !isHurt) {
+        collisionWithDino = true; //collision with bronto
+    }
+    if (stegyXc > -54 && stegyXc < 143 && stegyYc < 200 && stegyYc > -29 && !isHurt) {
+        collisionWithDino = true; //collision with stegy
+    }
+    if (triceXc > -74 && triceXc < 90 && triceYc < 180 && triceYc > -29 && !isHurt) {
+        collisionWithDino = true; //collision with trice
+    }
+
+
+    if (collisionWithDino) {
         isHurt = parseInt(fps * 1.5);
     }
-    if (charX <= apple1X + collisionThreshold && charX >= apple1X - collisionThreshold &&
-        apple1Y >= charY - 65 - jumpOffset && apple1Y <= charY - jumpOffset && !apple1Caught) {
+    if (apple1Xc > -94 && apple1Xc < 56 && apple1Yc > -29 && apple1Yc < 183 && !apple1Caught) {
         apple1Caught = true;
         fruits++;
         setTimeout(removeApple1, 1000);
     }
-    if (charX <= apple2X + collisionThreshold && charX >= apple2X - collisionThreshold &&
-        apple2Y >= charY - 65 - jumpOffset && apple2Y <= charY - jumpOffset && !apple2Caught) {
+    if (apple2Xc > -94 && apple2Xc < 56 && apple2Yc > -29 && apple2Yc < 183 && !apple2Caught) {
         apple2Caught = true;
         fruits++;
         setTimeout(removeApple2, 1000);
     }
-    if (charX <= apple3X + collisionThreshold && charX >= apple3X - collisionThreshold &&
-        apple3Y >= charY - 65 - jumpOffset && apple3Y <= charY - jumpOffset && !apple3Caught) {
+    if (apple3Xc > -94 && apple3Xc < 56 && apple3Yc > -29 && apple3Yc < 183 && !apple3Caught) {
         apple3Caught = true;
         fruits++;
         setTimeout(removeApple3, 1000);
     }
-    if (charX <= melonX + 1.5 * collisionThreshold && charX >= melonX - 1.5 * collisionThreshold &&
-        melonY >= charY - 65 - jumpOffset && melonY <= charY - jumpOffset && !melonCaught) {
+    if (melonXc > -94 && melonXc < 86 && melonYc > -29 && melonYc < 175 && !melonCaught) {
         melonCaught = true;
         fruits += 2;
         setTimeout(removeMelon, 1000);
     }
-    if (charX <= lemonX + collisionThreshold && charX >= lemonX - collisionThreshold &&
-        lemonY >= charY - 65 - jumpOffset && lemonY <= charY - jumpOffset && !lemonCaught) {
+    if (lemonXc > -94 && lemonXc < 56 && lemonYc > -29 && lemonYc < 169 && !lemonCaught) {
         lemonCaught = true;
         fruits -= 2;
         setTimeout(removeLemon, 1000);
-        if (fruits < 0) {
-            fruits = 0;
-        }
+    }
+    if (fruits < 0) {
+        fruits = 0;
+    }
+    if (fruits > 50) {
+        fruits = 50;
+        lives = 0;
     }
 
     if (isHurt > 1) {
@@ -759,9 +821,11 @@ function collisionCheck() {
 
 // Handles character's jumping
 function jump() {
-    if (!jumping) {
-        jumping = true;
-        setTimeout(land, jumpHangTime);
+    if (!paused) {
+        if (!jumping) {
+            jumping = true;
+            setTimeout(land, jumpHangTime);
+        }
     }
 }
 
@@ -899,8 +963,8 @@ function drawMouth(x, y, mouth) {
 }
 
 // Draws life symbol
-function drawLifeSymbol(x, y){
-    var shape = [8,0,18,0,13,6,16,7,7,18,8,10,4,10,8,0];
+function drawLifeSymbol(x, y) {
+    var shape = [8, 0, 18, 0, 13, 6, 16, 7, 7, 18, 8, 10, 4, 10, 8, 0];
     var i, n;
     n = shape.length;
 
@@ -955,12 +1019,40 @@ function resourceLoaded() {
     }
 }
 
+// Outputs stats to the screen, if selected
+function recordStats() {
+    if (stats) {
+        document.getElementById('charX').innerHTML = charX + "";
+        document.getElementById('charY').innerHTML = (charY - jumpOffset) + "";
+        document.getElementById('rexX').innerHTML = rexX + "";
+        document.getElementById('rexY').innerHTML = rexY + "";
+        document.getElementById('brontoX').innerHTML = brontoX + "";
+        document.getElementById('brontoY').innerHTML = brontoY + "";
+        document.getElementById('stegyX').innerHTML = stegyX + "";
+        document.getElementById('stegyY').innerHTML = stegyY + "";
+        document.getElementById('triceX').innerHTML = triceX + "";
+        document.getElementById('triceY').innerHTML = triceY + "";
+        document.getElementById('apple1X').innerHTML = apple1X + "";
+        document.getElementById('apple1Y').innerHTML = apple1Y + "";
+        document.getElementById('apple2X').innerHTML = apple2X + "";
+        document.getElementById('apple2Y').innerHTML = apple2Y + "";
+        document.getElementById('apple3X').innerHTML = apple3X + "";
+        document.getElementById('apple3Y').innerHTML = apple3Y + "";
+        document.getElementById('melonX').innerHTML = melonX + "";
+        document.getElementById('melonY').innerHTML = melonY + "";
+        document.getElementById('lemonX').innerHTML = lemonX + "";
+        document.getElementById('lemonY').innerHTML = lemonY + "";
+        document.getElementById('stats').style.display = 'block';
+    } else {
+        document.getElementById('stats').style.display = 'none';
+    }
+}
+
 //Mouse click!
 // function iClick(e){
 //     getMouse(e);
 //     jump();
 // }
-
 // Gets mouse data
 // function getMouse(e) {
 //     var element = canvas,
@@ -979,10 +1071,22 @@ function resourceLoaded() {
 // }
 
 //Handles pause toggle
-function togglePause(){
-    if (lives>0) {
-        paused = !paused;
+function togglePause() {
+    if (status == 0){
+        document.getElementById('startTitle').style.display = 'none';
+        document.getElementById('start').style.display = 'none';
+        status = 1;
+        paused = false;
+    }else {
+        if (lives > 0) {
+            paused = !paused;
+        }
     }
+}
+
+//Handles stats toggle
+function toggleStats() {
+    stats = !stats;
 }
 
 // Handles keydown events
@@ -1009,14 +1113,18 @@ function handleKeyDown(e) {
             jump();
             break;
         case 40: //down
+            break;
         case 83: //s
+            toggleStats();
             break;
         case 80: //p
             togglePause();
             break;
         case 13: //enter
         case 16: //right shift
-            //fire
+            if (lives == 0) {
+                location.reload();
+            }
             break;
     }
 }
