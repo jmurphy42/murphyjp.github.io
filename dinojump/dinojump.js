@@ -228,10 +228,10 @@ function draw() {
     }
 
     var pausedBanner = document.getElementById('paused');
-    var winBanner = document.getElementById('start');
+    var startBanner = document.getElementById('start');
     if (status == 0){
-        winBanner.style.left = parseInt(WIDTH / 2 - 150) + "px";
-        winBanner.style.display = 'block';
+        startBanner.style.left = parseInt(WIDTH / 2 - 150) + "px";
+        startBanner.style.display = 'block';
     }else{
         if (paused) {
             pausedBanner.style.left = parseInt(WIDTH / 2 - 150) + "px";
